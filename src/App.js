@@ -6,6 +6,8 @@ import BGHEADER_MOBILE from './assets/CHERRYBLO.jpg'; // Imagem para mobile
 import B1 from './assets/bolsa1.png'
 import B2 from './assets/bolsa2.png'
 import B3 from './assets/bolsa3.png'
+import ImageCarousel from './components/Carrosel';
+
 
 
 // Estilos globais
@@ -207,7 +209,7 @@ const ProductName = styled.h3`
 
 const ProductPrice = styled.p`
   font-size: 1.2rem;
-  color: #F29F05;
+  color: #837E7A;
 `;
 
 const Footer = styled.footer`
@@ -286,6 +288,8 @@ const App = () => {
           </ProductCard>
         </CatalogGrid>
       </CatalogSection>
+
+      <ImageCarousel/>
       
       <Footer>
         <p>&copy; 2024 Cherry Blossom - Todos os direitos reservados.</p>
