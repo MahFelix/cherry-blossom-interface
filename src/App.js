@@ -127,7 +127,7 @@ const HeroTitle = styled.h1`
 `;
 
 const HeroButton = styled.a`
-  background-color: #F29F05;
+  background-color:#2A3258;
   color: white;
   padding: 15px 30px;
   text-decoration: none;
