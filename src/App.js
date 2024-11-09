@@ -93,7 +93,7 @@ const MenuItem = styled.a`
 const HeroSection = styled.section`
   background-color: #CCCCCC;
   color: black;
-  padding: 80px 0;
+  padding: 100px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,7 +117,7 @@ const HeroContent = styled.div`
   /* Responsividade para mobile */
   @media (max-width: 768px) {
     p {
-      font-size: 20px;
+      font-size: 16px;
     }
   }
 `;
@@ -129,7 +129,7 @@ width: 15.1em;
 
   /* Responsividade para mobile */
   @media (max-width: 768px) {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
 `;
 
