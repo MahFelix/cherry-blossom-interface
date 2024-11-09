@@ -123,12 +123,13 @@ const HeroContent = styled.div`
 `;
 
 const HeroTitle = styled.h1`
+width: 15.1em;
   font-size: 3rem;
   margin-bottom: 20px;
 
   /* Responsividade para mobile */
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
 `;
 
