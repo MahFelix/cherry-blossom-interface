@@ -9,24 +9,22 @@ import image5 from "../assets/PNGBEMVINDO1.png";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
-
 const CarouselSection = styled.section`
-  padding: 0px 20px;
+  padding: 20px;
   background-color: #f4f4f9;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 `;
 
 const Title = styled.h1`
-display: flex;
-  padding: 0px 20px;
-  background-color: #f4f4f9;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: 20px;
+  color: #4A3B31;
 `;
 
 const CarouselWrapper = styled(Slider)`
-
+  .slick-slide img {
+    border-radius: 15px;
+    margin: 0 auto;
+  }
 `;
 
 const ImageGrid = styled.div`
@@ -96,19 +94,42 @@ const ImageCarousel = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 2000,
+    speed: 3000,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true, // Ativa rolagem automática
+    autoplaySpeed: 3000, // Intervalo de 3 segundos entre slides
+    rtl: true, // Define a direção da rolagem para a direita
+  };
+
+  const secondCarouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 3000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
 
   return (
-    <CarouselSection>
-      <Title>Explore Nossos Modelos Exclusivos de Bolsas</Title>
-      <CarouselWrapper {...settings}>
-        <CarouselItem />
-        <CarouselItem />
-      </CarouselWrapper>
-    </CarouselSection>
+    <>
+      <CarouselSection>
+        <Title>Explore Nossos Modelos Exclusivos de Bolsas</Title>
+        <CarouselWrapper {...settings}>
+          <CarouselItem />
+          <CarouselItem />
+        </CarouselWrapper>
+      </CarouselSection>
+      
+      <CarouselSection>
+        <Title>Descubra a Nova Coleção</Title>
+        <CarouselWrapper {...secondCarouselSettings}>
+          <CarouselItem />
+          <CarouselItem />
+        </CarouselWrapper>
+      </CarouselSection>
+    </>
   );
 };
 
