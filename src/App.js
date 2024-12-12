@@ -268,9 +268,9 @@ const App = () => {
     { id: 7, name: "Cherry Joy", price: "R$ 374,90", image: B7 },
     { id: 8, name: "Cherry 214", price: "R$ 359,90", image: B8 },
     { id: 9, name: "Cherry 214", price: "R$ 359,90", image: B9 },
-    { id: 10, name: "Cherry La Vier", price: "R$ 359,90", image: B10 },
-    { id: 11, name: "Cherry k12", price: "R$ 359,90", image: B11 }, 
-   { id: 12, name: "Cherry La Vier", price: "R$ 359,90", image: B12 },
+    { id: 10, name: "Cherry La Vier", price: "R$ 397,20", image: B10 },
+    { id: 11, name: "Cherry k12", price: "R$ 299,20", image: B11 }, 
+   { id: 12, name: "Cherry La Vier", price: "R$ 397,20", image: B12 },
   ];
 
   const whatsappNumber = "5579999163347"; // Número do WhatsApp da vendedora
