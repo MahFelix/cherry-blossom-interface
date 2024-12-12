@@ -3,9 +3,18 @@ import styled, { createGlobalStyle } from 'styled-components';
 import BLOGO from './assets/LOGO  BRANCA PRETA 2.png';
 import BGHEADER from './assets/CherryBGCatalogo.jpg';
 import BGHEADER_MOBILE from './assets/CHERRYBLO.jpg'; // Imagem para mobile
-import B1 from './assets/bolsa1.png'
-import B2 from './assets/bolsa2.png'
-import B3 from './assets/bolsa3.png'
+import B1 from './assets/Produtos/BagBege2.webp'
+import B2 from './assets/Produtos/BagBrownN.webp'
+import B3 from './assets/Produtos/BagRedN.webp'
+import B4 from './assets/Produtos/BolsaAmarela.webp'
+import B5 from './assets/Produtos/BolsaAzul.webp'
+import B6 from './assets/Produtos/IMG_8685.webp'
+import B7 from './assets/Produtos/bolsaRosa.webp'
+import B8 from './assets/Produtos/bolsapretaN.webp'
+import B9 from './assets/Produtos/BagBlack.jpeg'
+import B10 from './assets/Produtos/BagBlue.jpeg'
+import B11 from './assets/Produtos/BolsaGreen.jpeg'
+import B12 from './assets/Produtos/BagOrang.jpeg'
 import ImageCarousel from './components/Carrosel';
 
 
@@ -229,22 +238,43 @@ const Footer = styled.footer`
   }
 `;
 
-const FooterLink = styled.a`
-  color: #F29F05;
-  text-decoration: none;
-  margin: 0 15px;
-  
-  &:hover {
-    text-decoration: underline;
-  }
 
-  /* Responsividade para mobile */
-  @media (max-width: 768px) {
-    margin: 0 10px;
+
+const BuyButton = styled.a`
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #2A3258;
+  color: white;
+  padding: 10px 15px;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #e68900;
   }
 `;
 
 const App = () => {
+  const products = [
+    { id: 1, name: "Cherry Joy", price: "R$ 374,20", image: B1 },
+    { id: 2, name: "Cherry Texas", price: "R$ 399,90", image: B2 },
+    { id: 3, name: "Cherry Cluth", price: "R$ 284,90", image: B3 },
+    { id: 4, name: "Cherry mini Cluth", price: "R$ 199,90", image: B4 },
+    { id: 5, name: "Cherry Vier", price: "R$ 339,90", image: B5 },
+    { id: 6, name: "Cherry mini Cluth", price: "R$ 199,90", image: B6 },
+    { id: 7, name: "Cherry Joy", price: "R$ 374,90", image: B7 },
+    { id: 8, name: "Cherry 214", price: "R$ 359,90", image: B8 },
+    { id: 9, name: "Cherry 214", price: "R$ 359,90", image: B9 },
+    { id: 10, name: "Cherry La Vier", price: "R$ 359,90", image: B10 },
+    { id: 11, name: "Cherry k12", price: "R$ 359,90", image: B11 }, 
+   { id: 12, name: "Cherry La Vier", price: "R$ 359,90", image: B12 },
+  ];
+
+  const whatsappNumber = "5579999163347"; // Número do WhatsApp da vendedora
+
   return (
     <>
       <GlobalStyle />
@@ -258,7 +288,7 @@ const App = () => {
         <MenuItem href="#">Catálogo</MenuItem>
         <MenuItem href="#">Contato</MenuItem>
       </Menu>
-      
+
       <HeroSection>
         <HeroContent>
           <HeroTitle>Bem-vindo à Cherry Blossom</HeroTitle>
@@ -266,43 +296,32 @@ const App = () => {
           <HeroButton href="#catalog">Veja o Catálogo</HeroButton>
         </HeroContent>
       </HeroSection>
-      
+
       <CatalogSection id="catalog">
         <CatalogTitle>Nosso Catálogo</CatalogTitle>
         <CatalogGrid>
-          <ProductCard>
-            <ProductImage src={B1} alt="Bolsa 1" />
-            <ProductDetails>
-              <ProductName>Bolsas Elegante</ProductName>
-              <ProductPrice>R$ 899,00</ProductPrice>
-            </ProductDetails>
-          </ProductCard>
-          <ProductCard>
-            <ProductImage src={B2} alt="Bolsa 2" />
-            <ProductDetails>
-              <ProductName>Bolsas Luxury</ProductName>
-              <ProductPrice>R$ 1200,00</ProductPrice>
-            </ProductDetails>
-          </ProductCard>
-          <ProductCard>
-            <ProductImage src={B3} alt="Bolsa 3" />
-            <ProductDetails>
-              <ProductName>Bolsas Sofisticada</ProductName>
-              <ProductPrice>R$ 1.000,00</ProductPrice>
-            </ProductDetails>
-          </ProductCard>
+          {products.map((product) => (
+            <ProductCard key={product.id}>
+              <ProductImage src={product.image} alt={product.name} />
+              <ProductDetails>
+                <ProductName>{product.name}</ProductName>
+                <ProductPrice>{product.price}</ProductPrice>
+                <BuyButton
+                  href={`https://wa.me/${whatsappNumber}?text=Olá,%20tenho%20interesse%20na%20bolsa%20${encodeURIComponent(product.name)}%20pelo%20preço%20de%20${encodeURIComponent(product.price)}.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Comprar
+                </BuyButton>
+              </ProductDetails>
+            </ProductCard>
+          ))}
         </CatalogGrid>
       </CatalogSection>
-
       <ImageCarousel/>
-      
+
       <Footer>
-        <p>&copy; 2024 Cherry Blossom - Todos os direitos reservados.</p>
-        <div>
-          <FooterLink href="#">Instagram</FooterLink>
-          <FooterLink href="#">Facebook</FooterLink>
-          <FooterLink href="#">Contato</FooterLink>
-        </div>
+        <p>© Cherry Blossom - Bolsas de Crochê de Luxo</p>
       </Footer>
     </>
   );
