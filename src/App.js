@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import BLOGO from './assets/LOGO  BRANCA PRETA 2.png';
 import BGHEADER from './assets/CherryBGCatalogo.jpg';
-import BGHEADER_MOBILE from './assets/CHERRYBLO.jpg'; // Imagem para mobile
+import BGHEADER_MOBILE from './assets/CHERRYBLO.webp'; // Imagem para mobile
 import B1 from './assets/Produtos/BagBege2.webp'
 import B2 from './assets/Produtos/BagBrownN.webp'
 import B3 from './assets/Produtos/BagRedN.webp'
