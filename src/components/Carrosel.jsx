@@ -4,11 +4,11 @@ import Slider from "react-slick";
 
 // Primeiro carrossel
 import image1 from "../assets/Carrousel2/IMG_8788.JPG";
-import image2 from "../assets/Carrousel2/bolsa2.webp";
-import image3 from "../assets/Carrousel2/bolsa3.webp";
-import image4 from "../assets/Carrousel2/bolsa4.webp";
+import image2 from "../assets/Produtos/BolsaGreen.jpeg";
+import image3 from "../assets/Produtos/BagBlue.jpeg";
+import image4 from "../assets/Produtos/BagBege2.webp";
 import image5 from "../assets/Carrousel2/bolsa5.webp";
-import image6 from "../assets/Carrousel2/bolsa6.webp";
+import image6 from "../assets/Produtos/BagRedN.webp";
 import image7 from "../assets/Carrousel2/bolsa7.webp";
 
 // Segundo carrossel
@@ -19,7 +19,7 @@ import image11 from "../assets/Carrousel1/bolsa12.webp";
 import image12 from "../assets/Carrousel1/bolsa13.webp";
 import image13 from "../assets/Carrousel1/bolsa14.webp";
 import image14 from "../assets/Carrousel1/bolsa9.webp";
-import image15 from "../assets/Carrousel2/bbs.webp";
+import image15 from "../assets/Carrousel1/BagOrangeLateral.jpeg";
 import image16 from "../assets/Carrousel1/bolsa16.webp";
 
 import "slick-carousel/slick/slick.css"; 
