@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import BLOGO from './assets/LOGO  BRANCA PRETA 2.png';
+import BLOGO from './assets/CherryLogo1.svg';
 import BGHEADER from './assets/CherryBGCatalogo.jpg';
 import BGHEADER_MOBILE from './assets/CHERRYBLO.webp'; // Imagem para mobile
 import B1 from './assets/Produtos/BagBege2.webp'
@@ -16,6 +16,8 @@ import B10 from './assets/Produtos/BagBlue.jpeg'
 import B11 from './assets/Produtos/BolsaGreen.jpeg'
 import B12 from './assets/Produtos/BagOrang.jpeg'
 import ImageCarousel from './components/Carrosel';
+import { AppBar } from '@mui/material';
+import NavBar from './components/NavBar'
 
 
 
@@ -60,6 +62,7 @@ const Header = styled.header`
 const Logo = styled.img`
   width: 25em;
   height: auto;
+  justify-content: flex-start;
 
   /* Responsividade para mobile */
   @media (max-width: 768px) {
@@ -73,22 +76,24 @@ const Menu = styled.nav`
   background-color: #fff;
   padding: 10px 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  align-items: center;
 
   /* Responsividade para mobile */
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
+
   }
 `;
 
 const MenuItem = styled.a`
-  margin: 0 20px;
+  margin: 0 100px;
   text-decoration: none;
   color: #333;
   font-weight: bold;
   font-size: 1rem;
   transition: color 0.3s;
-  
+
   &:hover {
     color: #F29F05;
   }
@@ -96,8 +101,11 @@ const MenuItem = styled.a`
   /* Responsividade para mobile */
   @media (max-width: 768px) {
     margin: 10px 0;
+    text-align: center;
   }
 `;
+
+
 
 const HeroSection = styled.section`
   background-color: #CCCCCC;
@@ -259,7 +267,7 @@ const BuyButton = styled.a`
 
 const App = () => {
   const products = [
-    { id: 1, name: "Cherry Joy", price: "R$ 374,20", image: B1 },
+    { id: 1, name: "Cherry Joy", price: "R$ 374,20", image: B1, },
     { id: 2, name: "Cherry Texas", price: "R$ 399,90", image: B2 },
     { id: 3, name: "Cherry Cluth", price: "R$ 284,90", image: B3 },
     { id: 4, name: "Cherry mini Cluth", price: "R$ 199,90", image: B4 },
@@ -278,16 +286,16 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
+      <NavBar/>
       <Header>
-        <Logo src={BLOGO} alt="Cherry Blossom Logo" />
+      <Logo src={BLOGO} alt="Cherry Blossom Logo" />
         <p>Bolsas de Crochê de Luxo</p>
       </Header>
-      <Menu>
-        <MenuItem href="#">Início</MenuItem>
-        <MenuItem href="#">Sobre</MenuItem>
-        <MenuItem href="#">Catálogo</MenuItem>
-        <MenuItem href="#">Contato</MenuItem>
-      </Menu>
+
+      <AppBar/>
+     
+
+      
 
       <HeroSection>
         <HeroContent>
