@@ -18,7 +18,7 @@ import B12 from './assets/Produtos/BagOrang.jpeg'
 import ImageCarousel from './components/Carrosel';
 import { AppBar } from '@mui/material';
 import NavBar from './components/NavBar'
-
+import Contact from './components/Contact'
 
 
 
@@ -327,6 +327,8 @@ const App = () => {
         </CatalogGrid>
       </CatalogSection>
       <ImageCarousel/>
+
+      <Contact/>
 
       <Footer>
         <p>© Cherry Blossom - Bolsas de Crochê de Luxo</p>
