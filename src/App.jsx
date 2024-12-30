@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import BLOGO from './assets/CherryLogo1.svg';
 import BGHEADER from './assets/CherryBGCatalogo.jpg';
 import BGHEADER_MOBILE from './assets/CHERRYBLO.webp'; // Imagem para mobile
@@ -21,21 +21,12 @@ import Contact from './components/Contact'
 import About from './components/About';
 import React, { useEffect } from "react";
 import ScrollReveal from "scrollreveal";
+import HeroSection from './components/HeroSection'
+import GlobalStyle from './GlobalStyles';
 
 
 
-// Estilos globais
-const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    background-color: #f4f4f9;
-  }
-`;
 
 const Header = styled.header`
   background-image: url(${BGHEADER});
@@ -72,73 +63,6 @@ const Logo = styled.img`
   }
 `;
 
-
-
-
-
-
-const HeroSection = styled.section`
-  background-color: #CCCCCC;
-  color: black;
-  padding: 100px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* Responsividade para mobile */
-  @media (max-width: 768px) {
-    flex-direction: column;
-    padding: 40px 20px;
-    text-align: center;
-  }
-`;
-
-const HeroContent = styled.div`
-  max-width: 700px;
-  text-align: center;
-
-  p {
-    font-size: 30px;
-  }
-
-  /* Responsividade para mobile */
-  @media (max-width: 768px) {
-    p {
-      font-size: 16px;
-    }
-  }
-`;
-
-const HeroTitle = styled.h1`
-width: 15.1em;
-  font-size: 3rem;
-  margin-bottom: 20px;
-
-  /* Responsividade para mobile */
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
-`;
-
-const HeroButton = styled.a`
-  background-color:#000000;
-  color: white;
-  padding: 15px 30px;
-  text-decoration: none;
-  font-size: 1.2rem;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #e68900;
-  }
-
-  /* Responsividade para mobile */
-  @media (max-width: 768px) {
-    padding: 10px 20px;
-    font-size: 1rem;
-  }
-`;
 
 const CatalogSection = styled.section`
   padding: 40px 20px;
@@ -272,23 +196,14 @@ const App = () => {
     <>
       <GlobalStyle />
       <NavBar/>
+
       <Header>
       <Logo src={BLOGO} alt="Cherry Blossom Logo" />
         <p>Bolsas de Crochê de Luxo</p>
       </Header>
 
       <AppBar/>
-     
-
-      
-
-      <HeroSection>
-        <HeroContent>
-          <HeroTitle>Bem-vindo à Cherry Blossom</HeroTitle>
-          <p>Elegância e sofisticação em cada peça.</p>
-          <HeroButton href="#catalog">Veja o Catálogo</HeroButton>
-        </HeroContent>
-      </HeroSection>
+     <HeroSection/>
 
       <CatalogSection id="catalog">
         <CatalogTitle>Nosso Catálogo</CatalogTitle>
@@ -311,14 +226,14 @@ const App = () => {
           ))}
         </CatalogGrid>
       </CatalogSection>
+
       <ImageCarousel/>
       <About/>
-
       <Contact/>
-
       <Footer>
         <p>© Cherry Blossom - Bolsas de Crochê de Luxo</p>
       </Footer>
+
     </>
   );
 };

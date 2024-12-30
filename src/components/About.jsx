@@ -26,7 +26,7 @@ const About = () => {
   return (
     <AboutContainer id="sobre">
       <TextContainer className="text-container">
-        <h1>Sobre Nós</h1>
+        <h1>SOBRE NÓS</h1>
         <p>
           Bem-vindo à <strong>Cherry Blossom</strong>, onde a arte do crochê se
           encontra com o luxo. Somos uma loja especializada em bolsas de crochê
@@ -81,7 +81,7 @@ const TextContainer = styled.div`
     margin-bottom: 20px;
 
     strong {
-      color: #d69e2e; /* Destaque em dourado */
+      color: #000000; /* Destaque em dourado */
     }
   }
 `;

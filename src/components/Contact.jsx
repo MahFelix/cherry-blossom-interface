@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Instagram, WhatsApp } from "@mui/icons-material"; // Importação dos ícones
 import ScrollReveal from "scrollreveal";
 import bolsaImage from "../assets/BagVier1.png"; // Substitua pelo caminho da sua imagem de bolsa
+import BLOGO from '../assets/CherryLogo1.svg';
 
 const Contact = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const Contact = () => {
   return (
     <ContactContainer id="contato" className="contact-section">
       <LinksContainer>
+        <Logo src={BLOGO} alt="Cherry Blossom Logo" />
         <h2>Entre em Contato</h2>
         <p>Nos siga ou envie uma mensagem:</p>
         <Link
@@ -38,6 +40,7 @@ const Contact = () => {
           WhatsApp
         </Link>
       </LinksContainer>
+
       <ImageContainer>
         <img src={bolsaImage} alt="Bolsa de crochê" />
       </ImageContainer>
@@ -111,5 +114,13 @@ const Link = styled.a`
 
   &:hover {
     color: #333;
+  }
+`;
+
+const Logo = styled.img`
+  width: 200px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 10px;
   }
 `;
