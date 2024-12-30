@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
+import ScrollReveal from "scrollreveal";
 
 // Primeiro carrossel
 import image1 from "../assets/Carrousel2/IMG_8788.JPG";
@@ -22,7 +23,7 @@ import image14 from "../assets/Carrousel1/bolsa9.webp";
 import image15 from "../assets/Carrousel1/BagOrangeLateral.jpeg";
 import image16 from "../assets/Carrousel1/bolsa16.webp";
 
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const CarouselSection = styled.section`
@@ -98,7 +99,6 @@ const ImageGrid = styled.div`
   }
 `;
 
-// Componente para o primeiro carrossel
 const CarouselItem = () => (
   <ImageGrid>
     <img src={image1} alt="Imagem 1" className="img1" />
@@ -108,11 +108,10 @@ const CarouselItem = () => (
     <img src={image5} alt="Imagem 5" className="img5" />
     <img src={image6} alt="Imagem 6" className="img6" />
     <img src={image7} alt="Imagem 7" className="img7" />
-    <img src={image15} alt="Imagem 8" className="img15" /> {/* Imagem 8 adicionada ao grid */}
+    <img src={image15} alt="Imagem 8" className="img15" />
   </ImageGrid>
 );
 
-// Componente para o segundo carrossel com imagens diferentes
 const CarouselItemSecond = () => (
   <ImageGrid>
     <img src={image8} alt="Imagem 6" className="img1" />
@@ -127,6 +126,17 @@ const CarouselItemSecond = () => (
 );
 
 const ImageCarousel = () => {
+  useEffect(() => {
+    ScrollReveal().reveal(".carousel-section", {
+      delay: 200,
+      duration: 1000,
+      distance: "50px",
+      easing: "ease-in-out",
+      origin: "bottom",
+      reset: true,
+    });
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -150,7 +160,7 @@ const ImageCarousel = () => {
 
   return (
     <>
-      <CarouselSection>
+      <CarouselSection className="carousel-section">
         <Title>Explore Nossos Modelos Exclusivos de Bolsas</Title>
         <CarouselWrapper {...settings}>
           <CarouselItem />
@@ -158,7 +168,7 @@ const ImageCarousel = () => {
         </CarouselWrapper>
       </CarouselSection>
       
-      <CarouselSection>
+      <CarouselSection className="carousel-section">
         <Title>Descubra a Nova Coleção</Title>
         <CarouselWrapper {...secondCarouselSettings}>
           <CarouselItemSecond />

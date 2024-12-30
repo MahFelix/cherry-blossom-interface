@@ -1,4 +1,3 @@
-import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import BLOGO from './assets/CherryLogo1.svg';
 import BGHEADER from './assets/CherryBGCatalogo.jpg';
@@ -19,6 +18,9 @@ import ImageCarousel from './components/Carrosel';
 import { AppBar } from '@mui/material';
 import NavBar from './components/NavBar'
 import Contact from './components/Contact'
+import About from './components/About';
+import React, { useEffect } from "react";
+import ScrollReveal from "scrollreveal";
 
 
 
@@ -151,7 +153,7 @@ width: 15.1em;
 `;
 
 const HeroButton = styled.a`
-  background-color:#2A3258;
+  background-color:#000000;
   color: white;
   padding: 15px 30px;
   text-decoration: none;
@@ -251,7 +253,7 @@ const Footer = styled.footer`
 const BuyButton = styled.a`
   display: inline-block;
   margin-top: 10px;
-  background-color: #2A3258;
+  background-color: #000000;
   color: white;
   padding: 10px 15px;
   font-size: 1rem;
@@ -265,7 +267,21 @@ const BuyButton = styled.a`
   }
 `;
 
+
+
 const App = () => {
+  useEffect(() => {
+    // Configuração do ScrollReveal
+    ScrollReveal().reveal('.reveal', {
+      delay: 300,
+      duration: 1000,
+      distance: '50px',
+      easing: 'ease-in-out',
+      opacity: 0,
+      scale: 0.85,
+    });
+  }, []);
+
   const products = [
     { id: 1, name: "Cherry Joy", price: "R$ 374,20", image: B1, },
     { id: 2, name: "Cherry Texas", price: "R$ 399,90", image: B2 },
@@ -280,6 +296,7 @@ const App = () => {
     { id: 11, name: "Cherry k12", price: "R$ 299,20", image: B11 }, 
    { id: 12, name: "Cherry La Vier", price: "R$ 397,20", image: B12 },
   ];
+  
 
   const whatsappNumber = "5579999163347"; // Número do WhatsApp da vendedora
 
@@ -307,7 +324,7 @@ const App = () => {
 
       <CatalogSection id="catalog">
         <CatalogTitle>Nosso Catálogo</CatalogTitle>
-        <CatalogGrid>
+        <CatalogGrid className='reveal'>
           {products.map((product) => (
             <ProductCard key={product.id}>
               <ProductImage src={product.image} alt={product.name} />
@@ -327,6 +344,7 @@ const App = () => {
         </CatalogGrid>
       </CatalogSection>
       <ImageCarousel/>
+      <About/>
 
       <Contact/>
 

@@ -1,26 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Instagram, WhatsApp } from "@mui/icons-material"; // Importação dos ícones
+import ScrollReveal from "scrollreveal";
 import bolsaImage from "../assets/BagVier1.png"; // Substitua pelo caminho da sua imagem de bolsa
 
 const Contact = () => {
+  useEffect(() => {
+    ScrollReveal().reveal(".contact-section", {
+      delay: 200,
+      duration: 1000,
+      distance: "50px",
+      easing: "ease-in-out",
+      origin: "bottom",
+      reset: true,
+    });
+  }, []);
+
   return (
-    <ContactContainer>
-      <ImageContainer>
-        <img src={bolsaImage} alt="Bolsa de crochê" />
-      </ImageContainer>
+    <ContactContainer id="contato" className="contact-section">
       <LinksContainer>
         <h2>Entre em Contato</h2>
         <p>Nos siga ou envie uma mensagem:</p>
-        <Link href="https://www.instagram.com/_cherry_blo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
+        <Link
+          href="https://www.instagram.com/_cherry_blo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Instagram />
           Instagram
         </Link>
-        <Link href="https://wa.me/5579999163347" target="_blank" rel="noopener noreferrer">
+        <Link
+          href="https://wa.me/5579999163347"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <WhatsApp />
           WhatsApp
         </Link>
       </LinksContainer>
+      <ImageContainer>
+        <img src={bolsaImage} alt="Bolsa de crochê" />
+      </ImageContainer>
     </ContactContainer>
   );
 };
@@ -30,7 +50,7 @@ export default Contact;
 // Estilos
 const ContactContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 20px;
   max-width: 1200px;
