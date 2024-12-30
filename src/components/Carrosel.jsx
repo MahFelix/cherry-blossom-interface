@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import ScrollReveal from "scrollreveal";
 
 // Primeiro carrossel
-import image1 from "../assets/Carrousel2/IMG_8788.JPG";
+import image1 from "../assets/Carrousel2/IMG_8788.webp";
 import image2 from "../assets/Produtos/BolsaGreen.jpeg";
 import image3 from "../assets/Produtos/BagBlue.webp";
 import image4 from "../assets/Produtos/BagBege2.webp";
