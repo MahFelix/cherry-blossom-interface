@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Instagram, WhatsApp } from "@mui/icons-material"; // Importação dos ícones
 import ScrollReveal from "scrollreveal";
-import bolsaImage from "../assets/BagVier1.png"; // Substitua pelo caminho da sua imagem de bolsa
+import bolsaImage from "../assets/BagVier1.webp"; // Substitua pelo caminho da sua imagem de bolsa
 import BLOGO from '../assets/CherryLogo1.svg';
 
 const Contact = () => {
