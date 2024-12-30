@@ -24,7 +24,7 @@ const About = () => {
   }, []);
 
   return (
-    <AboutContainer id="about">
+    <AboutContainer id="sobre">
       <TextContainer className="text-container">
         <h1>Sobre Nós</h1>
         <p>
