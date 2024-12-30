@@ -11,7 +11,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import GlobalStyle from '../GlobalStyles';
 
-
 const ResponsiveMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useTheme();
@@ -33,9 +32,23 @@ const ResponsiveMenu = () => {
   ];
 
   return (
-    <AppBar position="sticky" color="default" elevation={4}>
+    <AppBar
+      position="sticky"
+      sx={{
+        backgroundColor: '#000', // Fundo preto
+        color: '#fff', // Texto branco
+      }}
+      elevation={4}
+    >
       <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
+        <Typography
+          variant="h6"
+          sx={{
+            flexGrow: 1,
+            fontWeight: 'bold',
+            color: '#fff', // Título em branco
+          }}
+        >
           Cherry Blossom
         </Typography>
 
@@ -44,9 +57,9 @@ const ResponsiveMenu = () => {
             <IconButton
               size="large"
               edge="end"
-              color="inherit"
               aria-label="menu"
               onClick={handleMenuOpen}
+              sx={{ color: '#fff' }} // Ícone do menu em branco
             >
               <MenuIcon />
             </IconButton>
@@ -54,10 +67,28 @@ const ResponsiveMenu = () => {
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
               onClose={handleMenuClose}
+              PaperProps={{
+                style: {
+                  backgroundColor: '#000', // Fundo do menu preto
+                  color: '#fff', // Texto do menu em branco
+                },
+              }}
             >
               {menuItems.map((item) => (
-                <MenuItem key={item.label} onClick={handleMenuClose}>
-                  <a href={item.link} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <MenuItem
+                  key={item.label}
+                  onClick={handleMenuClose}
+                  sx={{
+                    color: '#fff',
+                    '&:hover': {
+                      backgroundColor: '#333', // Hover cinza
+                    },
+                  }}
+                >
+                  <a
+                    href={item.link}
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
                     {item.label}
                   </a>
                 </MenuItem>
@@ -66,7 +97,16 @@ const ResponsiveMenu = () => {
           </>
         ) : (
           menuItems.map((item) => (
-            <Button key={item.label} color="inherit" href={item.link}>
+            <Button
+              key={item.label}
+              href={item.link}
+              sx={{
+                color: '#fff',
+                '&:hover': {
+                  backgroundColor: '#333', // Hover cinza para os botões
+                },
+              }}
+            >
               {item.label}
             </Button>
           ))

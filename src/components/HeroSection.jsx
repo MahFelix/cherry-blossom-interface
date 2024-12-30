@@ -13,8 +13,8 @@ const GlobalStyle = createGlobalStyle`
 
 // Estilo para a seção Hero
 const HeroSection = styled.section`
-  background-color: #CCCCCC;
-  color: black;
+  background-color: #231C1C;
+  color: #ffffff;
   padding: 100px 0;
   display: flex;
   align-items: center;
