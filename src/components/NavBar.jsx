@@ -1,5 +1,4 @@
 import React from 'react';
-import { createGlobalStyle } from 'styled-components';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -10,17 +9,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import GlobalStyle from '../GlobalStyles';
 
-// Estilos globais permanecem os mesmos
-const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
-  body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background-color: #f4f4f9;
-  }
-`;
 
 const ResponsiveMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
