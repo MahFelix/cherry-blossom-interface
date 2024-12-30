@@ -273,7 +273,7 @@ const App = () => {
   useEffect(() => {
     // Configuração do ScrollReveal
     ScrollReveal().reveal('.reveal', {
-      delay: 300,
+      delay: 200,
       duration: 1000,
       distance: '50px',
       easing: 'ease-in-out',
@@ -324,11 +324,11 @@ const App = () => {
 
       <CatalogSection id="catalog">
         <CatalogTitle>Nosso Catálogo</CatalogTitle>
-        <CatalogGrid className='reveal'>
+        <CatalogGrid>
           {products.map((product) => (
-            <ProductCard key={product.id}>
-              <ProductImage src={product.image} alt={product.name} />
-              <ProductDetails>
+            <ProductCard key={product.id} className='reveal'>
+              <ProductImage  src={product.image} alt={product.name} className='reveal' />
+              <ProductDetails >
                 <ProductName>{product.name}</ProductName>
                 <ProductPrice>{product.price}</ProductPrice>
                 <BuyButton
