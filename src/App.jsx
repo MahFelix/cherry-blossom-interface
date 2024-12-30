@@ -98,7 +98,7 @@ const CatalogGrid = styled.div`
 
 const ProductCard = styled.div`
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
