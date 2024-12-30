@@ -72,40 +72,8 @@ const Logo = styled.img`
   }
 `;
 
-const Menu = styled.nav`
-  display: flex;
-  justify-content: center;
-  background-color: #fff;
-  padding: 10px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  align-items: center;
 
-  /* Responsividade para mobile */
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
 
-  }
-`;
-
-const MenuItem = styled.a`
-  margin: 0 100px;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: color 0.3s;
-
-  &:hover {
-    color: #F29F05;
-  }
-
-  /* Responsividade para mobile */
-  @media (max-width: 768px) {
-    margin: 10px 0;
-    text-align: center;
-  }
-`;
 
 
 
