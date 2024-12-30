@@ -97,36 +97,64 @@ const CatalogGrid = styled.div`
 `;
 
 const ProductCard = styled.div`
-  background-color: white;
-  border-radius: 10px;
+  background-color: #fff;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   }
 `;
 
 const ProductImage = styled.img`
   width: 100%;
-  height: auto;
+  height: 200px; /* Define uma altura consistente para as imagens */
+  object-fit: cover; /* Garante que a imagem fique bem ajustada */
 `;
 
 const ProductDetails = styled.div`
-  padding: 15px;
+  padding: 20px;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espaçamento consistente entre os elementos */
 `;
 
 const ProductName = styled.h3`
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #333;
+  margin: 0;
+  font-weight: bold;
 `;
 
 const ProductPrice = styled.p`
   font-size: 1.2rem;
   color: #837E7A;
+  margin: 0;
 `;
+
+const ProductButton = styled.button`
+  background-color: #ff8c00;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #e07b00;
+  }
+`;
+
 
 const Footer = styled.footer`
   background-color: #333;
