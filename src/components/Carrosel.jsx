@@ -6,7 +6,7 @@ import ScrollReveal from "scrollreveal";
 // Primeiro carrossel
 import image1 from "../assets/Carrousel2/IMG_8788.JPG";
 import image2 from "../assets/Produtos/BolsaGreen.jpeg";
-import image3 from "../assets/Produtos/BagBlue.jpeg";
+import image3 from "../assets/Produtos/BagBlue.webp";
 import image4 from "../assets/Produtos/BagBege2.webp";
 import image5 from "../assets/Carrousel2/bolsa5.webp";
 import image6 from "../assets/Produtos/BagRedN.webp";
@@ -20,7 +20,7 @@ import image11 from "../assets/Carrousel1/bolsa12.webp";
 import image12 from "../assets/Carrousel1/bolsa13.webp";
 import image13 from "../assets/Carrousel1/bolsa14.webp";
 import image14 from "../assets/Carrousel1/bolsa9.webp";
-import image15 from "../assets/Carrousel1/BagOrangeLateral.jpeg";
+import image15 from "../assets/Produtos/BagOrangeLateral.webp";
 import image16 from "../assets/Carrousel1/bolsa16.webp";
 
 import "slick-carousel/slick/slick.css";

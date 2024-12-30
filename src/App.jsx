@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import BLOGO from './assets/CherryLogo1.svg';
-import BGHEADER from './assets/CherryBGCatalogo.jpg';
+import BGHEADER from './assets/CherryBGCatalogo.webp';
 import BGHEADER_MOBILE from './assets/CHERRYBLO.webp'; // Imagem para mobile
 import B1 from './assets/Produtos/BagBege2.webp'
 import B2 from './assets/Produtos/BagBrownN.webp'
@@ -10,10 +10,10 @@ import B5 from './assets/Produtos/BolsaAzul.webp'
 import B6 from './assets/Produtos/IMG_8685.webp'
 import B7 from './assets/Produtos/bolsaRosa.webp'
 import B8 from './assets/Produtos/bolsapretaN.webp'
-import B9 from './assets/Produtos/BagBlack.jpeg'
-import B10 from './assets/Produtos/BagBlue.jpeg'
+import B9 from './assets/Produtos/BagBlack.webp'
+import B10 from './assets/Produtos/BagBlue.webp'
 import B11 from './assets/Produtos/BolsaGreen.jpeg'
-import B12 from './assets/Produtos/BagOrang.jpeg'
+import B12 from './assets/Produtos/BagOrang.webp'
 import ImageCarousel from './components/Carrosel';
 import { AppBar } from '@mui/material';
 import NavBar from './components/NavBar'
