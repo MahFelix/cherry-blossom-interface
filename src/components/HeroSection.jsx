@@ -84,6 +84,7 @@ const App = () => {
       <HeroSection>
         <HeroContent>
           <HeroTitle>Bem-vindo à Cherry Blossom</HeroTitle>
+            <p>Bolsas de Crochê de Luxo</p>
           <p>Elegância e sofisticação em cada peça.</p>
           <HeroButton href="#catalog">Veja o Catálogo</HeroButton>
         </HeroContent>

@@ -199,7 +199,6 @@ const App = () => {
 
       <Header>
       <Logo src={BLOGO} alt="Cherry Blossom Logo" />
-        <p>Bolsas de Crochê de Luxo</p>
       </Header>
 
       <AppBar/>
