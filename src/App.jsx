@@ -141,22 +141,6 @@ const ProductPrice = styled.p`
   margin: 0;
 `;
 
-const ProductButton = styled.button`
-  background-color: #ff8c00;
-  color: #fff;
-  border: none;
-  border-radius: 2px;
-  padding: 10px 15px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 15px;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #70706f;
-  }
-`;
-
 
 const Footer = styled.footer`
   background-color: #333;
