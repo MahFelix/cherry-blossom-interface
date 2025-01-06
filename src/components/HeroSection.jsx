@@ -65,7 +65,7 @@ const HeroButton = styled.a`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #e68900;
+    background-color: #686868;
   }
 
   /* Responsividade para mobile */

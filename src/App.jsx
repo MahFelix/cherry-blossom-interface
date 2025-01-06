@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import BLOGO from './assets/CherryLogo1.svg';
+import BLOGO from './assets/LOGO  BRANCA.png';
+
 import BGHEADER from './assets/CherryBGCatalogo.webp';
-import BGHEADER_MOBILE from './assets/CHERRYBLO.webp'; // Imagem para mobile
+import BGHEADER_MOBILE from './assets/MOBILEBD3.jpg'; // Imagem para mobile
 import B1 from './assets/Produtos/BagBege2.webp'
 import B2 from './assets/Produtos/BagBrownN.webp'
 import B3 from './assets/Produtos/BagRedN.webp'
@@ -14,6 +15,7 @@ import B9 from './assets/Produtos/BagBlack.webp'
 import B10 from './assets/Produtos/BagBlue.webp'
 import B11 from './assets/Produtos/BolsaGreen.jpeg'
 import B12 from './assets/Produtos/BagOrang.webp'
+import B13 from './assets/BagVier1.webp'
 import ImageCarousel from './components/Carrosel';
 import { AppBar } from '@mui/material';
 import NavBar from './components/NavBar'
@@ -98,7 +100,7 @@ const CatalogGrid = styled.div`
 
 const ProductCard = styled.div`
   background-color: #fff;
-  border-radius: 6px;
+  border-radius: 2px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
@@ -143,7 +145,7 @@ const ProductButton = styled.button`
   background-color: #ff8c00;
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 2px;
   padding: 10px 15px;
   font-size: 1rem;
   cursor: pointer;
@@ -151,7 +153,7 @@ const ProductButton = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #e07b00;
+    background-color: #70706f;
   }
 `;
 
@@ -178,12 +180,12 @@ const BuyButton = styled.a`
   padding: 10px 15px;
   font-size: 1rem;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 2px;
   text-align: center;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #e68900;
+    background-color: #4d4d4d;
   }
 `;
 
@@ -213,36 +215,37 @@ const App = () => {
     { id: 8, name: "Cherry 214", price: "R$ 359,90", image: B8 },
     { id: 9, name: "Cherry 214", price: "R$ 359,90", image: B9 },
     { id: 10, name: "Cherry La Vier", price: "R$ 397,20", image: B10 },
-    { id: 11, name: "Cherry k12", price: "R$ 299,20", image: B11 }, 
-   { id: 12, name: "Cherry La Vier", price: "R$ 397,20", image: B12 },
+    { id: 11, name: "Cherry k12", price: "R$ 299,20", image: B11 },
+    { id: 12, name: "Cherry La Vier", price: "R$ 397,20", image: B12 },
+    { id: 13, name: "Cherry La Vier", price: "R$ 397,20", image: B13 },
   ];
-  
+
 
   const whatsappNumber = "5579999163347"; // Número do WhatsApp da vendedora
 
   return (
     <>
       <GlobalStyle />
-      <NavBar/>
+      <NavBar />
 
       <Header>
-      <Logo src={BLOGO} alt="Cherry Blossom Logo" />
+        <Logo src={BLOGO} alt="Cherry Blossom Logo" />
       </Header>
 
-      <AppBar/>
-     <HeroSection/>
+      <AppBar />
+      <HeroSection />
 
       <CatalogSection id="catalog">
         <CatalogTitle>Nosso Catálogo</CatalogTitle>
         <CatalogGrid>
           {products.map((product) => (
             <ProductCard key={product.id} className='reveal'>
-              <ProductImage  src={product.image} alt={product.name} className='reveal' />
+              <ProductImage src={product.image} alt={product.name} className='reveal' />
               <ProductDetails >
                 <ProductName>{product.name}</ProductName>
                 <ProductPrice>{product.price}</ProductPrice>
                 <BuyButton
-                  href={`https://wa.me/${whatsappNumber}?text=Olá,%20tenho%20interesse%20na%20bolsa%20${encodeURIComponent(product.name)}%20pelo%20preço%20de%20${encodeURIComponent(product.price)}.`}
+                  href={`https://wa.me/${whatsappNumber}?text=Bem%20vindo,%20poderia%20me%20dar%20mais%20informações%20sobre%20o%20produto%20${encodeURIComponent(product.name)}?`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -254,9 +257,9 @@ const App = () => {
         </CatalogGrid>
       </CatalogSection>
 
-      <ImageCarousel/>
-      <About/>
-      <Contact/>
+      <ImageCarousel />
+      <About />
+      <Contact />
       <Footer>
         <p>© Cherry Blossom - Bolsas de Crochê de Luxo</p>
       </Footer>
