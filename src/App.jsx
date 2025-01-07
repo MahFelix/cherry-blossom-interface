@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import BLOGO from './assets/LOGO  BRANCA.png';
-
+import BLOGO from './assets/LOGO  BRANCA.png'; // LOGO MOBILE
+import BLOGO2 from './assets/LOGO  BRANCA PRETA 2.png' // LOGO DESKTOP
 import BGHEADER from './assets/CherryBGCatalogo.webp';
-import BGHEADER_MOBILE from './assets/MOBILEBD3.jpg'; // Imagem para mobile
+import BGHEADER_MOBILE from './assets/MOBILEBD3.jpg';
 import B1 from './assets/Produtos/BagBege2.webp'
 import B2 from './assets/Produtos/BagBrownN.webp'
 import B3 from './assets/Produtos/BagRedN.webp'
@@ -53,14 +53,27 @@ const Header = styled.header`
   }
 `;
 
-const Logo = styled.img`
+const LogoDesktop = styled.img`
+  display: block;
   width: 25em;
   height: auto;
-  justify-content: flex-start;
+  margin-left: 30%;
 
-  /* Responsividade para mobile */
+
   @media (max-width: 768px) {
-    width: 15em;
+    display: none;
+  }
+`;
+
+const LogoMobile = styled.img`
+  display: none;
+  width: 15em;
+  height: auto;
+  margin-left: 18%;
+
+
+  @media (max-width: 768px) {
+    display: block;
   }
 `;
 
@@ -212,7 +225,8 @@ const App = () => {
       <NavBar />
 
       <Header>
-        <Logo src={BLOGO} alt="Cherry Blossom Logo" />
+        <LogoDesktop src={BLOGO2} alt="Cherry Blossom Logo Desktop" />
+        <LogoMobile src={BLOGO} alt="Cherry Blossom Logo Mobile" />
       </Header>
 
       <AppBar />
