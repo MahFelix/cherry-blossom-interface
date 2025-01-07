@@ -23,7 +23,6 @@ import Contact from './components/Contact'
 import About from './components/About';
 import React, { useEffect } from "react";
 import ScrollReveal from "scrollreveal";
-import HeroSection from './components/HeroSection'
 import GlobalStyle from './GlobalStyles';
 
 
@@ -217,7 +216,6 @@ const App = () => {
       </Header>
 
       <AppBar />
-      <HeroSection />
 
       <CatalogSection id="catalog">
         <CatalogTitle>Nosso Catálogo</CatalogTitle>
