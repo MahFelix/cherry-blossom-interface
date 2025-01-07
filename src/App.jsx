@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import BLOGO from './assets/LOGO  BRANCA.png'; // LOGO MOBILE
-import BLOGO2 from './assets/LOGO  BRANCA PRETA 2.png' // LOGO DESKTOP
+import BLOGO2 from './assets/CherryLogo1.svg' // LOGO DESKTOP
 import BGHEADER from './assets/CherryBGCatalogo.webp';
 import BGHEADER_MOBILE from './assets/MOBILEBD3.webp';
 import B1 from './assets/Produtos/BagBege2.webp'
