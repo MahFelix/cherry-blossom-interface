@@ -141,15 +141,17 @@ const ProductDetails = styled.div`
 `;
 
 const ProductName = styled.h3`
-  font-size: 1.6rem;
-  color: #333;
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  color: #121212;
   margin: 0;
-  font-weight: bold;
+
 `;
 
 const ProductPrice = styled.p`
-  font-size: 1.2rem;
-  color: #837E7A;
+  font-size: 1rem;
+  color: #121212;
   margin: 0;
 `;
 
