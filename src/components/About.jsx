@@ -55,7 +55,7 @@ const AboutContainer = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px;
+  padding: 40px 200px;
   max-width: 1200px;
   margin: 0 auto;
   gap: 20px;

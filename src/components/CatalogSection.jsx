@@ -1,8 +1,4 @@
 import styled from 'styled-components';
-import BLOGO from './assets/LOGO  BRANCA.png'; // LOGO MOBILE
-import BLOGO2 from './assets/CherryLogo1.svg' // LOGO DESKTOP
-import BGHEADER from './assets/CherryBGCatalogo.webp';
-import BGHEADER_MOBILE from './assets/MOBILEBD3.webp';
 import B1 from './assets/Produtos/BagBege2.webp'
 import B2 from './assets/Produtos/BagBrownN.webp'
 import B3 from './assets/Produtos/BagRedN.webp'
@@ -16,76 +12,9 @@ import B10 from './assets/Produtos/BagBlue.webp'
 import B11 from './assets/Produtos/BolsaGreen.jpeg'
 import B12 from './assets/Produtos/BagOrang.webp'
 import B13 from './assets/BagVier1.webp'
-import ImageCarousel from './components/Carrosel';
-import { AppBar } from '@mui/material';
-import NavBar from './components/NavBar'
-import Contact from './components/Contact'
-import About from './components/About';
-import React, { useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import ScrollReveal from "scrollreveal";
-import GlobalStyle from './GlobalStyles';
 
-
-
-
-const Header = styled.header`
-  background-image: url(${BGHEADER});
-  background-size: cover;
-  background-position: center;
-  padding: 20em;
-  text-align: center;
-  color: white;
-
-  p {
-    font-size: 50px;
-    color: black;
-  }
-
-  /* Responsividade para mobile */
-  @media (max-width: 768px) {
-    background-image: url(${BGHEADER_MOBILE});
-    padding: 10em 2em;
-
-    p {
-      font-size: 30px;
-    }
-  }
-`;
-
-const LogoDesktop = styled.img`
-  display: block;
-  width: 25em;
-  height: auto;
-  margin-left: 30%;
-
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const LogoMobile = styled.img`
-  display: none;
-  width: 15em;
-  height: auto;
-  margin-left: 18%;
-
-
-  @media (max-width: 768px) {
-    display: block;
-  }
-`;
-
-
-const CatalogSection = styled.section`
-  padding: 40px 200px;
-  text-align: center;
-
-  /* Responsividade para mobile */
-  @media (max-width: 768px) {
-    padding: 20px;
-  }
-`;
 
 const CatalogTitle = styled.h2`
   font-size: 2.5rem;
@@ -155,20 +84,6 @@ const ProductPrice = styled.p`
 `;
 
 
-const Footer = styled.footer`
-  background-color: #333;
-  color: white;
-  padding: 20px 0;
-  text-align: center;
-
-  /* Responsividade para mobile */
-  @media (max-width: 768px) {
-    padding: 10px 0;
-  }
-`;
-
-
-
 const BuyButton = styled.a`
   display: inline-block;
   margin-top: 10px;
@@ -187,6 +102,46 @@ const BuyButton = styled.a`
 `;
 
 
+const Popup = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const PopupContent = styled.div`
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const PopupImage = styled.img`
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 8px;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+`;
+
 
 
 const App = () => {
@@ -201,6 +156,10 @@ const App = () => {
       scale: 0.85,
     });
   }, []);
+
+
+  const CatalogSection = () => {
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
   const products = [
     { id: 1, name: "Cherry Joy", price: "R$ 374,20", image: B1, },
@@ -218,52 +177,65 @@ const App = () => {
     { id: 13, name: "Cherry La Vier", price: "R$ 397,20", image: B13 },
   ];
 
+  const openPopup = (product) => {
+    setSelectedProduct(product);
+  };
+
+  const closePopup = () => {
+    setSelectedProduct(null);
+  };
+
 
   const whatsappNumber = "5579999163347"; // Número do WhatsApp da vendedora
 
   return (
-    <>
-      <GlobalStyle />
-      <NavBar />
-      <Header>
-        <LogoDesktop src={BLOGO2} alt="Cherry Blossom Logo Desktop" />
-        <LogoMobile src={BLOGO} alt="Cherry Blossom Logo Mobile" />
-      </Header>
-
-      <CatalogSection/>
-      <AppBar />
-
       <CatalogSection id="catalog">
-        <CatalogTitle>Nosso Catálogo</CatalogTitle>
-        <CatalogGrid>
-          {products.map((product) => (
-            <ProductCard key={product.id} className='reveal'>
-              <ProductImage src={product.image} alt={product.name} className='reveal' />
-              <ProductDetails >
-                <ProductName>{product.name}</ProductName>
-                <ProductPrice>{product.price}</ProductPrice>
-                <BuyButton
-                  href={`https://wa.me/${whatsappNumber}?text=Bem%20vindo,%20poderia%20me%20dar%20mais%20informações%20sobre%20o%20produto%20${encodeURIComponent(product.name)}?`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Comprar
-                </BuyButton>
-              </ProductDetails>
-            </ProductCard>
-          ))}
-        </CatalogGrid>
-      </CatalogSection>
+      <CatalogTitle>Nosso Catálogo</CatalogTitle>
+      <CatalogGrid>
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            className="reveal"
+            onClick={() => openPopup(product)}
+          >
+            <ProductImage
+              src={product.image}
+              alt={product.name}
+              className="reveal"
+            />
+            <ProductDetails>
+              <ProductName>{product.name}</ProductName>
+              <ProductPrice>{product.price}</ProductPrice>
+              <BuyButton
+                href={`https://wa.me/${whatsappNumber}?text=Bem%20vindo,%20poderia%20me%20dar%20mais%20informações%20sobre%20o%20produto%20${encodeURIComponent(
+                  product.name
+                )}?`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Comprar
+              </BuyButton>
+            </ProductDetails>
+          </ProductCard>
+        ))}
+      </CatalogGrid>
 
-      <ImageCarousel />
-      <About />
-      <Contact />
-      <Footer>
-        <p>© Cherry Blossom - Bolsas de Crochê de Luxo</p>
-      </Footer>
+      {selectedProduct && (
+        <Popup>
+          <PopupContent>
+            <PopupImage
+              src={selectedProduct.image}
+              alt={selectedProduct.name}
+            />
+            <CloseButton onClick={closePopup}>X</CloseButton>
+          </PopupContent>
+        </Popup>
+      )}
+    </CatalogSection>
 
-    </>
-  );
+    
+  )
+  ;}
 };
 
 export default App;

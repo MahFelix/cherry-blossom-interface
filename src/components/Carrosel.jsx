@@ -27,9 +27,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const CarouselSection = styled.section`
-  padding: 20px;
+  padding: 20px 200px;
   background-color: #f4f4f9;
   text-align: center;
+
+  @media (max-width: 768px) {
+  padding: 20px;
+  }
 `;
 
 const Title = styled.h1`
@@ -180,3 +184,4 @@ const ImageCarousel = () => {
 };
 
 export default ImageCarousel;
+

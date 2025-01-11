@@ -55,7 +55,7 @@ const ContactContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 20px 200px;
   max-width: 1200px;
   margin: 0 auto;
   gap: 20px;
@@ -63,6 +63,7 @@ const ContactContainer = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     text-align: center;
+    padding: 20px;
   }
 `;
 
