@@ -165,7 +165,7 @@ const ImageCarousel = () => {
   return (
     <>
       <CarouselSection className="carousel-section">
-        <Title>Explore Nossos Modelos Exclusivos de Bolsas</Title>
+        <Title>EXPLORE NOSSOS MODELOS EXCLUSIVOS DE BOLSAS</Title>
         <CarouselWrapper {...settings}>
           <CarouselItem />
           <CarouselItem />
@@ -173,7 +173,7 @@ const ImageCarousel = () => {
       </CarouselSection>
       
       <CarouselSection className="carousel-section">
-        <Title>Descubra a Nova Coleção</Title>
+        <Title>DESCUBRA A NOVA COLEÇÃO</Title>
         <CarouselWrapper {...secondCarouselSettings}>
           <CarouselItemSecond />
           <CarouselItemSecond />

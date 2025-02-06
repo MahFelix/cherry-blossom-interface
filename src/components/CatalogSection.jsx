@@ -1,26 +1,13 @@
 import styled from 'styled-components';
-import B1 from './assets/Produtos/BagBege2.webp'
-import B2 from './assets/Produtos/BagBrownN.webp'
-import B3 from './assets/Produtos/BagRedN.webp'
-import B4 from './assets/Produtos/BolsaAmarela.webp'
-import B5 from './assets/Produtos/BolsaAzul.webp'
-import B6 from './assets/Produtos/IMG_8685.webp'
-import B7 from './assets/Produtos/bolsaRosa.webp'
-import B8 from './assets/Produtos/bolsapretaN.webp'
-import B9 from './assets/Produtos/BagBlack.webp'
-import B10 from './assets/Produtos/BagBlue.webp'
-import B11 from './assets/Produtos/BolsaGreen.jpeg'
-import B12 from './assets/Produtos/BagOrang.webp'
-import B13 from './assets/BagVier1.webp'
-import React, { useEffect, useState} from "react";
-import ScrollReveal from "scrollreveal";
-
+import React, { useEffect, useState } from 'react';
+import ScrollReveal from 'scrollreveal';
+import * as Images from './assets/Produtos';
 
 const CatalogTitle = styled.h2`
   font-size: 2.5rem;
   margin-bottom: 20px;
+  text-align: center;
 
-  /* Responsividade para mobile */
   @media (max-width: 768px) {
     font-size: 2rem;
   }
@@ -32,7 +19,6 @@ const CatalogGrid = styled.div`
   gap: 20px;
   padding: 20px;
 
-  /* Responsividade para mobile */
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -56,8 +42,8 @@ const ProductCard = styled.div`
 
 const ProductImage = styled.img`
   width: 100%;
-  height: 200px; /* Define uma altura consistente para as imagens */
-  object-fit: cover; /* Garante que a imagem fique bem ajustada */
+  height: 200px;
+  object-fit: cover;
 `;
 
 const ProductDetails = styled.div`
@@ -65,33 +51,16 @@ const ProductDetails = styled.div`
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Espaçamento consistente entre os elementos */
+  gap: 10px;
 `;
 
-const ProductName = styled.h3`
-  font-size: 20px;
-  font-weight: 400;
-  font-style: normal;
-  color: #121212;
-  margin: 0;
-
-`;
-
-const ProductPrice = styled.p`
-  font-size: 1rem;
-  color: #121212;
-  margin: 0;
-`;
-
-
-const BuyButton = styled.a`
-  display: inline-block;
-  margin-top: 10px;
-  background-color: #000000;
+const BuyButton = styled.button`
+  background-color: #000;
   color: white;
   padding: 10px 15px;
   font-size: 1rem;
-  text-decoration: none;
+  border: none;
+  cursor: pointer;
   border-radius: 2px;
   text-align: center;
   transition: background-color 0.3s;
@@ -100,7 +69,6 @@ const BuyButton = styled.a`
     background-color: #4d4d4d;
   }
 `;
-
 
 const Popup = styled.div`
   position: fixed;
@@ -132,21 +100,29 @@ const PopupImage = styled.img`
   border-radius: 8px;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+`;
+
 const CloseButton = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
+  background: #ccc;
   border: none;
-  font-size: 20px;
+  padding: 10px;
   cursor: pointer;
 `;
 
-
+const ProceedButton = styled.a`
+  background: #000;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
+`;
 
 const App = () => {
   useEffect(() => {
-    // Configuração do ScrollReveal
     ScrollReveal().reveal('.reveal', {
       delay: 200,
       duration: 1000,
@@ -157,64 +133,30 @@ const App = () => {
     });
   }, []);
 
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const CatalogSection = () => {
-    const [selectedProduct, setSelectedProduct] = useState(null);
+  const products = Object.values(Images).map((image, index) => ({
+    id: index + 1,
+    name: `Produto ${index + 1}`,
+    price: `R$ ${(Math.random() * (400 - 200) + 200).toFixed(2)}`,
+    image,
+  }));
 
-  const products = [
-    { id: 1, name: "Cherry Joy", price: "R$ 374,20", image: B1, },
-    { id: 2, name: "Cherry Texas", price: "R$ 399,90", image: B2 },
-    { id: 3, name: "Cherry Cluth", price: "R$ 284,90", image: B3 },
-    { id: 4, name: "Cherry mini Cluth", price: "R$ 199,90", image: B4 },
-    { id: 5, name: "Cherry Vier", price: "R$ 339,90", image: B5 },
-    { id: 6, name: "Cherry mini Cluth", price: "R$ 199,90", image: B6 },
-    { id: 7, name: "Cherry Joy", price: "R$ 374,90", image: B7 },
-    { id: 8, name: "Cherry 214", price: "R$ 359,90", image: B8 },
-    { id: 9, name: "Cherry 214", price: "R$ 359,90", image: B9 },
-    { id: 10, name: "Cherry La Vier", price: "R$ 397,20", image: B10 },
-    { id: 11, name: "Cherry k12", price: "R$ 299,20", image: B11 },
-    { id: 12, name: "Cherry La Vier", price: "R$ 397,20", image: B12 },
-    { id: 13, name: "Cherry La Vier", price: "R$ 397,20", image: B13 },
-  ];
-
-  const openPopup = (product) => {
-    setSelectedProduct(product);
-  };
-
-  const closePopup = () => {
-    setSelectedProduct(null);
-  };
-
-
-  const whatsappNumber = "5579999163347"; // Número do WhatsApp da vendedora
+  const openPopup = (product) => setSelectedProduct(product);
+  const closePopup = () => setSelectedProduct(null);
+  const whatsappNumber = '5579999163347';
 
   return (
-      <CatalogSection id="catalog">
-      <CatalogTitle>Nosso Catálogo</CatalogTitle>
+    <section id="catalog">
+      <CatalogTitle>NOSSO CATÁLOGO</CatalogTitle>
       <CatalogGrid>
         {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            className="reveal"
-            onClick={() => openPopup(product)}
-          >
-            <ProductImage
-              src={product.image}
-              alt={product.name}
-              className="reveal"
-            />
+          <ProductCard key={product.id} onClick={() => openPopup(product)}>
+            <ProductImage src={product.image} alt={product.name} />
             <ProductDetails>
-              <ProductName>{product.name}</ProductName>
-              <ProductPrice>{product.price}</ProductPrice>
-              <BuyButton
-                href={`https://wa.me/${whatsappNumber}?text=Bem%20vindo,%20poderia%20me%20dar%20mais%20informações%20sobre%20o%20produto%20${encodeURIComponent(
-                  product.name
-                )}?`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Comprar
-              </BuyButton>
+              <h3>{product.name}</h3>
+              <p>{product.price}</p>
+              <BuyButton>Comprar</BuyButton>
             </ProductDetails>
           </ProductCard>
         ))}
@@ -223,19 +165,24 @@ const App = () => {
       {selectedProduct && (
         <Popup>
           <PopupContent>
-            <PopupImage
-              src={selectedProduct.image}
-              alt={selectedProduct.name}
-            />
-            <CloseButton onClick={closePopup}>X</CloseButton>
+            <PopupImage src={selectedProduct.image} alt={selectedProduct.name} />
+            <ButtonContainer>
+              <CloseButton onClick={closePopup}>Fechar</CloseButton>
+              <ProceedButton
+                href={`https://wa.me/${whatsappNumber}?text=Quero%20comprar%20o%20produto%20${encodeURIComponent(
+                  selectedProduct.name
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Prosseguir com a Compra
+              </ProceedButton>
+            </ButtonContainer>
           </PopupContent>
         </Popup>
       )}
-    </CatalogSection>
-
-    
-  )
-  ;}
+    </section>
+  );
 };
 
 export default App;

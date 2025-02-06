@@ -232,9 +232,10 @@ const App = () => {
 
       <CatalogSection/>
       <AppBar />
+      <ImageCarousel />
 
       <CatalogSection id="catalog">
-        <CatalogTitle>Nosso Catálogo</CatalogTitle>
+        <CatalogTitle>NOSSO CATÁLOGO</CatalogTitle>
         <CatalogGrid>
           {products.map((product) => (
             <ProductCard key={product.id} className='reveal'>
@@ -255,7 +256,7 @@ const App = () => {
         </CatalogGrid>
       </CatalogSection>
 
-      <ImageCarousel />
+    
       <About />
       <Contact />
       <Footer>
