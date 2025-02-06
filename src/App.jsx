@@ -1,33 +1,91 @@
+import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import BLOGO from './assets/LOGO  BRANCA.png'; // LOGO MOBILE
-import BLOGO2 from './assets/CherryLogo1.svg' // LOGO DESKTOP
+import BLOGO2 from './assets/CherryLogo1.svg'; // LOGO DESKTOP
 import BGHEADER from './assets/CherryBGCatalogo.webp';
 import BGHEADER_MOBILE from './assets/MOBILEBD3.webp';
-import B1 from './assets/Produtos/BagBege2.webp'
-import B2 from './assets/Produtos/BagBrownN.webp'
-import B3 from './assets/Produtos/BagRedN.webp'
-import B4 from './assets/Produtos/BolsaAmarela.webp'
-import B5 from './assets/Produtos/BolsaAzul.webp'
-import B6 from './assets/Produtos/IMG_8685.webp'
-import B7 from './assets/Produtos/bolsaRosa.webp'
-import B8 from './assets/Produtos/bolsapretaN.webp'
-import B9 from './assets/Produtos/BagBlack.webp'
-import B10 from './assets/Produtos/BagBlue.webp'
-import B11 from './assets/Produtos/BolsaGreen.jpeg'
-import B12 from './assets/Produtos/BagOrang.webp'
-import B13 from './assets/BagVier1.webp'
+import B1 from './assets/Produtos/BagBege2.webp';
+import B2 from './assets/Produtos/BagBrownN.webp';
+import B3 from './assets/Produtos/BagRedN.webp';
+import B4 from './assets/Produtos/BolsaAmarela.webp';
+import B5 from './assets/Produtos/BolsaAzul.webp';
+import B6 from './assets/Produtos/IMG_8685.webp';
+import B7 from './assets/Produtos/bolsaRosa.webp';
+import B8 from './assets/Produtos/bolsapretaN.webp';
+import B9 from './assets/Produtos/BagBlack.webp';
+import B10 from './assets/Produtos/BagBlue.webp';
+import B11 from './assets/Produtos/BolsaGreen.jpeg';
+import B12 from './assets/Produtos/BagOrang.webp';
+import B13 from './assets/BagVier1.webp';
 import ImageCarousel from './components/Carrosel';
 import { AppBar } from '@mui/material';
-import NavBar from './components/NavBar'
-import Contact from './components/Contact'
+import NavBar from './components/NavBar';
+import Contact from './components/Contact';
 import About from './components/About';
-import React, { useEffect } from "react";
 import ScrollReveal from "scrollreveal";
 import GlobalStyle from './GlobalStyles';
 
+// Estilos do Modal
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
 
+const ModalContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 70%;
+  max-height: 90%;
+  overflow: auto;
+`;
 
+const ModalImage = styled.img`
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 5px;
+`;
 
+const ModalButtons = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+`;
+
+const ModalButton = styled.button`
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+`;
+
+const CloseButton = styled(ModalButton)`
+  background-color: #ff4d4d;
+  color: white;
+`;
+
+const ProceedButton = styled(ModalButton)`
+  background-color: #30b84e;
+  color: white;
+`;
+
+// Estilos existentes (Header, CatalogSection, etc.)
 const Header = styled.header`
   background-image: url(${BGHEADER});
   background-size: cover;
@@ -41,7 +99,6 @@ const Header = styled.header`
     color: black;
   }
 
-  /* Responsividade para mobile */
   @media (max-width: 768px) {
     background-image: url(${BGHEADER_MOBILE});
     padding: 10em 2em;
@@ -58,7 +115,6 @@ const LogoDesktop = styled.img`
   height: auto;
   margin-left: 30%;
 
-
   @media (max-width: 768px) {
     display: none;
   }
@@ -70,18 +126,15 @@ const LogoMobile = styled.img`
   height: auto;
   margin-left: 18%;
 
-
   @media (max-width: 768px) {
     display: block;
   }
 `;
 
-
 const CatalogSection = styled.section`
   padding: 40px 200px;
   text-align: center;
 
-  /* Responsividade para mobile */
   @media (max-width: 768px) {
     padding: 20px;
   }
@@ -91,7 +144,6 @@ const CatalogTitle = styled.h2`
   font-size: 2.5rem;
   margin-bottom: 20px;
 
-  /* Responsividade para mobile */
   @media (max-width: 768px) {
     font-size: 2rem;
   }
@@ -103,7 +155,6 @@ const CatalogGrid = styled.div`
   gap: 20px;
   padding: 20px;
 
-  /* Responsividade para mobile */
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -127,8 +178,8 @@ const ProductCard = styled.div`
 
 const ProductImage = styled.img`
   width: 100%;
-  height: 200px; /* Define uma altura consistente para as imagens */
-  object-fit: cover; /* Garante que a imagem fique bem ajustada */
+  height: 200px;
+  object-fit: cover;
 `;
 
 const ProductDetails = styled.div`
@@ -136,7 +187,7 @@ const ProductDetails = styled.div`
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Espaçamento consistente entre os elementos */
+  gap: 10px;
 `;
 
 const ProductName = styled.h3`
@@ -145,7 +196,6 @@ const ProductName = styled.h3`
   font-style: normal;
   color: #121212;
   margin: 0;
-
 `;
 
 const ProductPrice = styled.p`
@@ -154,20 +204,16 @@ const ProductPrice = styled.p`
   margin: 0;
 `;
 
-
 const Footer = styled.footer`
   background-color: #333;
   color: white;
   padding: 20px 0;
   text-align: center;
 
-  /* Responsividade para mobile */
   @media (max-width: 768px) {
     padding: 10px 0;
   }
 `;
-
-
 
 const BuyButton = styled.a`
   display: inline-block;
@@ -186,10 +232,10 @@ const BuyButton = styled.a`
   }
 `;
 
-
-
-
 const App = () => {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const whatsappNumber = "5579999163347"; // Número do WhatsApp da vendedora
+
   useEffect(() => {
     // Configuração do ScrollReveal
     ScrollReveal().reveal('.reveal', {
@@ -203,7 +249,7 @@ const App = () => {
   }, []);
 
   const products = [
-    { id: 1, name: "Cherry Joy", price: "R$ 374,20", image: B1, },
+    { id: 1, name: "Cherry Joy", price: "R$ 374,20", image: B1 },
     { id: 2, name: "Cherry Texas", price: "R$ 399,90", image: B2 },
     { id: 3, name: "Cherry Cluth", price: "R$ 284,90", image: B3 },
     { id: 4, name: "Cherry mini Cluth", price: "R$ 199,90", image: B4 },
@@ -218,8 +264,20 @@ const App = () => {
     { id: 13, name: "Cherry La Vier", price: "R$ 397,20", image: B13 },
   ];
 
+  const handleBuyClick = (product) => {
+    setSelectedProduct(product);
+  };
 
-  const whatsappNumber = "5579999163347"; // Número do WhatsApp da vendedora
+  const handleCloseModal = () => {
+    setSelectedProduct(null);
+  };
+
+  const handleProceedToWhatsApp = () => {
+    if (selectedProduct) {
+      const message = `Bem-vindo(a)! Gostaria de mais informações sobre o produto: ${encodeURIComponent(selectedProduct.name)}`;
+      window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+    }
+  };
 
   return (
     <>
@@ -230,7 +288,7 @@ const App = () => {
         <LogoMobile src={BLOGO} alt="Cherry Blossom Logo Mobile" />
       </Header>
 
-      <CatalogSection/>
+      <CatalogSection />
       <AppBar />
       <ImageCarousel />
 
@@ -238,16 +296,12 @@ const App = () => {
         <CatalogTitle>NOSSO CATÁLOGO</CatalogTitle>
         <CatalogGrid>
           {products.map((product) => (
-            <ProductCard key={product.id} className='reveal'>
-              <ProductImage src={product.image} alt={product.name} className='reveal' />
-              <ProductDetails >
+            <ProductCard key={product.id} className="reveal">
+              <ProductImage src={product.image} alt={product.name} className="reveal" />
+              <ProductDetails>
                 <ProductName>{product.name}</ProductName>
                 <ProductPrice>{product.price}</ProductPrice>
-                <BuyButton
-                  href={`https://wa.me/${whatsappNumber}?text=Bem%20vindo,%20poderia%20me%20dar%20mais%20informações%20sobre%20o%20produto%20${encodeURIComponent(product.name)}?`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <BuyButton onClick={() => handleBuyClick(product)}>
                   Comprar
                 </BuyButton>
               </ProductDetails>
@@ -256,13 +310,25 @@ const App = () => {
         </CatalogGrid>
       </CatalogSection>
 
-    
+      {selectedProduct && (
+        <ModalOverlay>
+          <ModalContent>
+            <ModalImage src={selectedProduct.image} alt={selectedProduct.name} />
+            <ModalButtons>
+              <CloseButton onClick={handleCloseModal}>Fechar</CloseButton>
+              <ProceedButton onClick={handleProceedToWhatsApp}>
+                Prosseguir com a compra
+              </ProceedButton>
+            </ModalButtons>
+          </ModalContent>
+        </ModalOverlay>
+      )}
+
       <About />
       <Contact />
       <Footer>
         <p>© Cherry Blossom - Bolsas de Crochê de Luxo</p>
       </Footer>
-
     </>
   );
 };
