@@ -6,19 +6,6 @@ import BLOGO from "./assets/LOGO  BRANCA.png"; // LOGO MOBILE
 import BLOGO2 from "./assets/CherryLogo1.svg"; // LOGO DESKTOP
 import BGHEADER from "./assets/CherryBGCatalogo.webp";
 import BGHEADER_MOBILE from "./assets/MOBILEBD3.webp";
-import B1 from "./assets/Produtos/BagBege2.webp";
-import B2 from "./assets/Produtos/BagBrownN.webp";
-import B3 from "./assets/Produtos/BagRedN.webp";
-import B4 from "./assets/Produtos/BolsaAmarela.webp";
-import B5 from "./assets/Produtos/BolsaAzul.webp";
-import B6 from "./assets/Produtos/IMG_8685.webp";
-import B7 from "./assets/Produtos/bolsaRosa.webp";
-import B8 from "./assets/Produtos/bolsapretaN.webp";
-import B9 from "./assets/Produtos/BagBlack.webp";
-import B10 from "./assets/Produtos/BagBlue.webp";
-import B11 from "./assets/Produtos/BolsaGreen.jpeg";
-import B12 from "./assets/Produtos/BagOrang.webp";
-import B13 from "./assets/BagVier1.webp";
 import ImageCarousel from "./components/Carrosel";
 import { AppBar } from "@mui/material";
 import NavBar from "./components/NavBar";
@@ -31,64 +18,7 @@ import Login from "./containers/Login/Login";
 import axios from "axios";
 
 // Estilos do Modal
-const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-`;
 
-const ModalContent = styled.div`
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  max-width: 70%;
-  max-height: 90%;
-  overflow: auto;
-`;
-
-const ModalImage = styled.img`
-  max-width: 100%;
-  max-height: 80vh;
-  border-radius: 5px;
-`;
-
-const ModalButtons = styled.div`
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-`;
-
-const ModalButton = styled.button`
-  padding: 10px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    opacity: 0.9;
-  }
-`;
-
-const CloseButton = styled(ModalButton)`
-  background-color: #ff4d4d;
-  color: white;
-`;
-
-const ProceedButton = styled(ModalButton)`
-  background-color: #30b84e;
-  color: white;
-`;
 
 // Estilos existentes (Header, CatalogSection, etc.)
 const Header = styled.header`
@@ -254,7 +184,7 @@ const BuyButton = styled.a`
 const App = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [products, setProducts] = useState([]); // Estado para armazenar os produtos
-  const whatsappNumber = "5579999163347"; // Número do WhatsApp da vendedora
+
 
    // Buscar produtos da API
    useEffect(() => {
@@ -285,19 +215,6 @@ const App = () => {
 
   const handleBuyClick = (product) => {
     setSelectedProduct(product);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedProduct(null);
-  };
-
-  const handleProceedToWhatsApp = () => {
-    if (selectedProduct) {
-      const message = `Bem-vindo(a)! Gostaria de mais informações sobre o produto: ${encodeURIComponent(
-        selectedProduct.name
-      )}`;
-      window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
-    }
   };
 
   return (
