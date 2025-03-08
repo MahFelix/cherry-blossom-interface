@@ -363,26 +363,6 @@ const handleSubmit = async (e) => {
               required
             />
             <Input
-              type="file"
-              name="image"
-              accept="image/*" // Aceita apenas arquivos de imagem
-              onChange={(e) => {
-                const file = e.target.files[0];
-                if (file) {
-                  const reader = new FileReader();
-                  reader.onload = (event) => {
-                    setCurrentProduct({
-                      ...currentProduct,
-                      image: event.target.result, // Exibe a pré-visualização
-                      imageFile: file, // Armazena o arquivo para envio
-                    });
-                  };
-                  reader.readAsDataURL(file);
-                }
-              }}
-              required
-            />
-            <Input
               type="text"
               name="imageUrl"
               placeholder="URL da Imagem"
