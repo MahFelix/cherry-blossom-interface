@@ -189,8 +189,11 @@ const AdminDashboard = () => {
     name: "",
     subtitle: "",
     image: "",
+    imageUrl: "", // Novo campo para URL da imagem
     price: 0,
+    imageFile: null,
   });
+
   const [isEditing, setIsEditing] = useState(false);
   const [activeMenu, setActiveMenu] = useState("view"); // 'view' ou 'add'
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Estado para controlar a barra lateral em mobile
@@ -213,53 +216,56 @@ const AdminDashboard = () => {
     setCurrentProduct({ ...currentProduct, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const formData = new FormData();
-      formData.append("name", currentProduct.name);
-      formData.append("subtitle", currentProduct.subtitle);
-      formData.append("price", currentProduct.price);
-      if (currentProduct.imageFile) {
-        formData.append("image", currentProduct.imageFile); // Adiciona o arquivo da imagem
-      }
-  
-      if (currentProduct.id) {
-        // Editar produto existente
-        await axios.put(
-          `https://cherry-backend-fcm4.onrender.com/api/products/${currentProduct.id}`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data", // Define o tipo de conteúdo como multipart/form-data
-            },
-          }
-        );
-      } else {
-        // Adicionar novo produto
-        await axios.post("https://cherry-backend-fcm4.onrender.com/api/products", formData, {
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const formData = new FormData();
+    formData.append("name", currentProduct.name);
+    formData.append("subtitle", currentProduct.subtitle);
+    formData.append("price", currentProduct.price);
+
+    if (currentProduct.imageFile) {
+      formData.append("image", currentProduct.imageFile); // Adiciona o arquivo da imagem
+    } else if (currentProduct.imageUrl) {
+      formData.append("imageUrl", currentProduct.imageUrl); // Adiciona a URL da imagem
+    }
+
+    if (currentProduct.id) {
+      // Editar produto existente
+      await axios.put(
+        `https://cherry-backend-fcm4.onrender.com/api/products/${currentProduct.id}`,
+        formData,
+        {
           headers: {
             "Content-Type": "multipart/form-data", // Define o tipo de conteúdo como multipart/form-data
           },
-        });
-        
-      }
-  
-      fetchProducts();
-      setCurrentProduct({
-        id: null,
-        name: "",
-        subtitle: "",
-        image: "",
-        price: 0,
-        imageFile: null, // Limpa o arquivo da imagem
+        }
+      );
+    } else {
+      // Adicionar novo produto
+      await axios.post("https://cherry-backend-fcm4.onrender.com/api/products", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Define o tipo de conteúdo como multipart/form-data
+        },
       });
-      setIsEditing(false);
-      setActiveMenu("view"); // Voltar para a lista de produtos após salvar
-    } catch (error) {
-      console.error("Erro ao salvar produto:", error);
     }
-  };
+
+    fetchProducts();
+    setCurrentProduct({
+      id: null,
+      name: "",
+      subtitle: "",
+      image: "",
+      imageUrl: "", // Limpa a URL da imagem
+      price: 0,
+      imageFile: null, // Limpa o arquivo da imagem
+    });
+    setIsEditing(false);
+    setActiveMenu("view"); // Voltar para a lista de produtos após salvar
+  } catch (error) {
+    console.error("Erro ao salvar produto:", error);
+  }
+};
 
   const handleEditProduct = (product) => {
     setCurrentProduct(product);
@@ -375,6 +381,13 @@ const AdminDashboard = () => {
                 }
               }}
               required
+            />
+            <Input
+              type="text"
+              name="imageUrl"
+              placeholder="URL da Imagem"
+              value={currentProduct.imageUrl || ""}
+              onChange={handleInputChange}
             />
             <Input
               type="number"
