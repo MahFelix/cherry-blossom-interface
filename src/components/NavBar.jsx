@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -9,12 +9,13 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import GlobalStyle from '../GlobalStyles';
+import { Link, useNavigate } from 'react-router-dom';
 
-const ResponsiveMenu = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const ResponsiveMenu = ({ isAuthenticated, setIsAuthenticated }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const navigate = useNavigate();
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -24,11 +25,16 @@ const ResponsiveMenu = () => {
     setAnchorEl(null);
   };
 
+  const handleLogout = () => {
+    setIsAuthenticated(false); // Desloga o usuário
+    navigate('/'); // Redireciona para a página inicial
+  };
+
   const menuItems = [
-    { label: 'Início', link: '#' },
-    { label: 'Sobre', link: '#sobre' },
-    { label: 'Catálogo', link: '#catalog' },
-    { label: 'Contato', link: '#contato' },
+    { label: 'Início', link: '/' },
+    { label: 'Sobre', link: '/sobre' },
+    { label: 'Catálogo', link: '/catalogo' },
+    { label: 'Contato', link: '/contato' },
   ];
 
   return (
@@ -85,45 +91,90 @@ const ResponsiveMenu = () => {
                     },
                   }}
                 >
-                  <a
-                    href={item.link}
+                  <Link
+                    to={item.link}
                     style={{ textDecoration: 'none', color: 'inherit' }}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </MenuItem>
               ))}
+              {isAuthenticated ? (
+                <MenuItem
+                  onClick={handleLogout}
+                  sx={{
+                    color: '#fff',
+                    '&:hover': {
+                      backgroundColor: '#333', // Hover cinza
+                    },
+                  }}
+                >
+                  Logout
+                </MenuItem>
+              ) : (
+                <MenuItem
+                  component={Link}
+                  to="/login"
+                  sx={{
+                    color: '#fff',
+                    '&:hover': {
+                      backgroundColor: '#333', // Hover cinza
+                    },
+                  }}
+                >
+                  Login
+                </MenuItem>
+              )}
             </Menu>
           </>
         ) : (
-          menuItems.map((item) => (
-            <Button
-              key={item.label}
-              href={item.link}
-              sx={{
-                color: '#fff',
-                '&:hover': {
-                  backgroundColor: '#333', // Hover cinza para os botões
-                },
-              }}
-            >
-              {item.label}
-            </Button>
-          ))
+          <>
+            {menuItems.map((item) => (
+              <Button
+                key={item.label}
+                component={Link}
+                to={item.link}
+                sx={{
+                  color: '#fff',
+                  '&:hover': {
+                    backgroundColor: '#333', // Hover cinza para os botões
+                  },
+                }}
+              >
+                {item.label}
+              </Button>
+            ))}
+            {isAuthenticated ? (
+              <Button
+                onClick={handleLogout}
+                sx={{
+                  color: '#fff',
+                  '&:hover': {
+                    backgroundColor: '#333', // Hover cinza para o botão de logout
+                  },
+                }}
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button
+                component={Link}
+                to="/login"
+                sx={{
+                  color: '#fff',
+                  '&:hover': {
+                    backgroundColor: '#333', // Hover cinza para o botão de login
+                  },
+                }}
+              >
+                Login
+              </Button>
+            )}
+          </>
         )}
       </Toolbar>
     </AppBar>
   );
 };
 
-const App = () => {
-  return (
-    <>
-      <GlobalStyle />
-      <ResponsiveMenu />
-      {/* Resto do código permanece o mesmo */}
-    </>
-  );
-};
-
-export default App;
+export default ResponsiveMenu;
