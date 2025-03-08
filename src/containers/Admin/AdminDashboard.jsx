@@ -227,11 +227,11 @@ const AdminDashboard = () => {
       if (currentProduct.id) {
         // Editar produto existente
         await axios.put(
-          `https://cherry-backend-fcm4.onrender.com/api/products${currentProduct.id}`,
+          `https://cherry-backend-fcm4.onrender.com/api/products/${currentProduct.id}`,
           formData,
           {
             headers: {
-              "Content-Type": "multipart/form-data", // Define o tipo de conteúdo como multipart/form-data
+              "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
             },
           }
         );
@@ -239,7 +239,7 @@ const AdminDashboard = () => {
         // Adicionar novo produto
         await axios.post("https://cherry-backend-fcm4.onrender.com/api/products", formData, {
           headers: {
-            "Content-Type": "multipart/form-data", // Define o tipo de conteúdo como multipart/form-data
+            "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
           },
         });
       }
