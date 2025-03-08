@@ -71,8 +71,10 @@ const MainContent = styled.div`
   padding: 20px;
   background-color: white;
   overflow-y: auto;
+  width: 100%;
   @media (max-width: 768px) {
     padding: 10px;
+    width: 100%;
   }
 `;
 
