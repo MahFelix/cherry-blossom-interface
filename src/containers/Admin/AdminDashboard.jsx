@@ -189,14 +189,13 @@ const AdminDashboard = () => {
     id: null,
     name: "",
     subtitle: "",
-    image: "",
-    imageUrl: "", // Novo campo para URL da imagem
+    image: "", // URL da imagem
     price: 0,
   });
 
   const [isEditing, setIsEditing] = useState(false);
-  const [activeMenu, setActiveMenu] = useState("view"); // 'view' ou 'add'
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Estado para controlar a barra lateral em mobile
+  const [activeMenu, setActiveMenu] = useState("view");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     fetchProducts();
@@ -223,28 +222,26 @@ const AdminDashboard = () => {
         name: currentProduct.name,
         subtitle: currentProduct.subtitle,
         price: currentProduct.price,
-        image: currentProduct.imageUrl, // Usa a URL da imagem
+        image: currentProduct.image, // Usa a URL da imagem
       };
 
       if (currentProduct.id) {
-        // Editar produto existente
         await axios.put(
           `https://cherry-backend-fcm4.onrender.com/api/products/${currentProduct.id}`,
           productData,
           {
             headers: {
-              "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
+              "Content-Type": "application/json",
             },
           }
         );
       } else {
-        // Adicionar novo produto
         await axios.post(
           "https://cherry-backend-fcm4.onrender.com/api/products",
           productData,
           {
             headers: {
-              "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
+              "Content-Type": "application/json",
             },
           }
         );
@@ -256,11 +253,10 @@ const AdminDashboard = () => {
         name: "",
         subtitle: "",
         image: "",
-        imageUrl: "", // Limpa a URL da imagem
         price: 0,
       });
       setIsEditing(false);
-      setActiveMenu("view"); // Voltar para a lista de produtos após salvar
+      setActiveMenu("view");
     } catch (error) {
       console.error("Erro ao salvar produto:", error);
     }
@@ -269,13 +265,13 @@ const AdminDashboard = () => {
   const handleEditProduct = (product) => {
     setCurrentProduct(product);
     setIsEditing(true);
-    setActiveMenu("add"); // Mudar para o formulário de edição
+    setActiveMenu("add");
   };
 
   const handleDeleteProduct = async (id) => {
     try {
       await axios.delete(`https://cherry-backend-fcm4.onrender.com/api/products/${id}`);
-      fetchProducts(); // Atualizar lista após exclusão
+      fetchProducts();
     } catch (error) {
       console.error("Erro ao excluir produto:", error);
     }
@@ -283,7 +279,6 @@ const AdminDashboard = () => {
 
   return (
     <DashboardContainer>
-      {/* Barra Lateral (mantida igual) */}
       <Sidebar isOpen={isSidebarOpen}>
         <MenuIcon onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
         <SidebarMenu isOpen={isSidebarOpen}>
@@ -291,7 +286,7 @@ const AdminDashboard = () => {
             active={activeMenu === "view"}
             onClick={() => {
               setActiveMenu("view");
-              setIsSidebarOpen(false); // Fechar a barra lateral após clicar
+              setIsSidebarOpen(false);
             }}
           >
             Exibir Todos Produtos
@@ -308,7 +303,7 @@ const AdminDashboard = () => {
                 image: "",
                 price: 0,
               });
-              setIsSidebarOpen(false); // Fechar a barra lateral após clicar
+              setIsSidebarOpen(false);
             }}
           >
             Adicionar Produto
@@ -316,14 +311,12 @@ const AdminDashboard = () => {
         </SidebarMenu>
       </Sidebar>
 
-      {/* Área Principal */}
       <MainContent>
         {activeMenu === "view" ? (
-          // Exibir lista de produtos
           <ProductList>
             {products.map((product) => (
               <ProductCard key={product.id}>
-                <ProductImage src={product.image || product.imageUrl} alt={product.name} />
+                <ProductImage src={product.image} alt={product.name} />
                 <ProductDetails>
                   <ProductName>{product.name}</ProductName>
                   <ProductPrice>R$ {product.price}</ProductPrice>
@@ -332,9 +325,7 @@ const AdminDashboard = () => {
                   <ActionButton onClick={() => handleEditProduct(product)}>
                     <FaEdit />
                   </ActionButton>
-                  <ActionButton
-                    onClick={() => handleDeleteProduct(product.id)}
-                  >
+                  <ActionButton onClick={() => handleDeleteProduct(product.id)}>
                     <FaTrash />
                   </ActionButton>
                 </ProductActions>
@@ -342,7 +333,6 @@ const AdminDashboard = () => {
             ))}
           </ProductList>
         ) : (
-          // Exibir formulário de adicionar/editar produto
           <Form onSubmit={handleSubmit}>
             <h2>{isEditing ? "Editar Produto" : "Adicionar Novo Produto"}</h2>
             <Input
@@ -363,9 +353,9 @@ const AdminDashboard = () => {
             />
             <Input
               type="text"
-              name="imageUrl"
+              name="image"
               placeholder="URL da Imagem"
-              value={currentProduct.imageUrl || ""}
+              value={currentProduct.image}
               onChange={handleInputChange}
               required
             />
