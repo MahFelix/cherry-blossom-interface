@@ -231,7 +231,7 @@ const AdminDashboard = () => {
           formData,
           {
             headers: {
-              "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
+       
             },
           }
         );
@@ -239,7 +239,7 @@ const AdminDashboard = () => {
         // Adicionar novo produto
         await axios.post("https://cherry-backend-fcm4.onrender.com/api/products", formData, {
           headers: {
-            "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
+           
           },
         });
       }
