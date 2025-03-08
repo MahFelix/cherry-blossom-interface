@@ -182,6 +182,7 @@ const Button = styled.button`
   }
 `;
 
+
 const AdminDashboard = () => {
   const [products, setProducts] = useState([]);
   const [currentProduct, setCurrentProduct] = useState({
@@ -191,7 +192,6 @@ const AdminDashboard = () => {
     image: "",
     imageUrl: "", // Novo campo para URL da imagem
     price: 0,
-    imageFile: null,
   });
 
   const [isEditing, setIsEditing] = useState(false);
@@ -225,7 +225,7 @@ const AdminDashboard = () => {
         price: currentProduct.price,
         image: currentProduct.imageUrl, // Usa a URL da imagem
       };
-  
+
       if (currentProduct.id) {
         // Editar produto existente
         await axios.put(
@@ -249,7 +249,7 @@ const AdminDashboard = () => {
           }
         );
       }
-  
+
       fetchProducts();
       setCurrentProduct({
         id: null,
@@ -283,7 +283,7 @@ const AdminDashboard = () => {
 
   return (
     <DashboardContainer>
-      {/* Barra Lateral */}
+      {/* Barra Lateral (mantida igual) */}
       <Sidebar isOpen={isSidebarOpen}>
         <MenuIcon onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
         <SidebarMenu isOpen={isSidebarOpen}>
@@ -323,7 +323,7 @@ const AdminDashboard = () => {
           <ProductList>
             {products.map((product) => (
               <ProductCard key={product.id}>
-                <ProductImage src={product.image} alt={product.name} />
+                <ProductImage src={product.image || product.imageUrl} alt={product.name} />
                 <ProductDetails>
                   <ProductName>{product.name}</ProductName>
                   <ProductPrice>R$ {product.price}</ProductPrice>
@@ -367,6 +367,7 @@ const AdminDashboard = () => {
               placeholder="URL da Imagem"
               value={currentProduct.imageUrl || ""}
               onChange={handleInputChange}
+              required
             />
             <Input
               type="number"
