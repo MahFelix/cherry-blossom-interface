@@ -229,18 +229,10 @@ const AdminDashboard = () => {
         await axios.put(
           `https://cherry-backend-fcm4.onrender.com/api/products/${currentProduct.id}`,
           formData,
-          {
-            headers: {
-       
-            },
-          }
         );
       } else {
         // Adicionar novo produto
         await axios.post("https://cherry-backend-fcm4.onrender.com/api/products", formData, {
-          headers: {
-           
-          },
         });
       }
   
