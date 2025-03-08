@@ -216,56 +216,55 @@ const AdminDashboard = () => {
     setCurrentProduct({ ...currentProduct, [name]: value });
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const formData = new FormData();
-    formData.append("name", currentProduct.name);
-    formData.append("subtitle", currentProduct.subtitle);
-    formData.append("price", currentProduct.price);
-
-    if (currentProduct.imageFile) {
-      formData.append("image", currentProduct.imageFile); // Adiciona o arquivo da imagem
-    } else if (currentProduct.imageUrl) {
-      formData.append("imageUrl", currentProduct.imageUrl); // Adiciona a URL da imagem
-    }
-
-    if (currentProduct.id) {
-      // Editar produto existente
-      await axios.put(
-        `https://cherry-backend-fcm4.onrender.com/api/products/${currentProduct.id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
-          },
-        }
-      );
-    } else {
-      // Adicionar novo produto
-      await axios.post("https://cherry-backend-fcm4.onrender.com/api/products", formData, {
-        headers: {
-          "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
-        },
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const productData = {
+        name: currentProduct.name,
+        subtitle: currentProduct.subtitle,
+        price: currentProduct.price,
+        image: currentProduct.imageUrl, // Usa a URL da imagem
+      };
+  
+      if (currentProduct.id) {
+        // Editar produto existente
+        await axios.put(
+          `https://cherry-backend-fcm4.onrender.com/api/products/${currentProduct.id}`,
+          productData,
+          {
+            headers: {
+              "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
+            },
+          }
+        );
+      } else {
+        // Adicionar novo produto
+        await axios.post(
+          "https://cherry-backend-fcm4.onrender.com/api/products",
+          productData,
+          {
+            headers: {
+              "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
+            },
+          }
+        );
+      }
+  
+      fetchProducts();
+      setCurrentProduct({
+        id: null,
+        name: "",
+        subtitle: "",
+        image: "",
+        imageUrl: "", // Limpa a URL da imagem
+        price: 0,
       });
+      setIsEditing(false);
+      setActiveMenu("view"); // Voltar para a lista de produtos após salvar
+    } catch (error) {
+      console.error("Erro ao salvar produto:", error);
     }
-
-    fetchProducts();
-    setCurrentProduct({
-      id: null,
-      name: "",
-      subtitle: "",
-      image: "",
-      imageUrl: "", // Limpa a URL da imagem
-      price: 0,
-      imageFile: null, // Limpa o arquivo da imagem
-    });
-    setIsEditing(false);
-    setActiveMenu("view"); // Voltar para a lista de produtos após salvar
-  } catch (error) {
-    console.error("Erro ao salvar produto:", error);
-  }
-};
+  };
 
   const handleEditProduct = (product) => {
     setCurrentProduct(product);
