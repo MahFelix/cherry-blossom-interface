@@ -191,7 +191,7 @@ const App = () => {
    useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:8090/api/products");
+        const response = await axios.get("https://cherry-backend-fcm4.onrender.com/api/products");
         setProducts(response.data); // Atualiza o estado com os produtos da API
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);

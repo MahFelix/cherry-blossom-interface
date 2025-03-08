@@ -201,7 +201,7 @@ const AdminDashboard = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:8090/api/products");
+      const response = await axios.get("https://cherry-backend-fcm4.onrender.com/api/products");
       setProducts(response.data);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
@@ -227,7 +227,7 @@ const AdminDashboard = () => {
       if (currentProduct.id) {
         // Editar produto existente
         await axios.put(
-          `http://localhost:8090/api/products/${currentProduct.id}`,
+          `https://cherry-backend-fcm4.onrender.com/api/products${currentProduct.id}`,
           formData,
           {
             headers: {
@@ -237,7 +237,7 @@ const AdminDashboard = () => {
         );
       } else {
         // Adicionar novo produto
-        await axios.post("http://localhost:8090/api/products", formData, {
+        await axios.post("https://cherry-backend-fcm4.onrender.com/api/products", formData, {
           headers: {
             "Content-Type": "multipart/form-data", // Define o tipo de conteúdo como multipart/form-data
           },
@@ -268,7 +268,7 @@ const AdminDashboard = () => {
 
   const handleDeleteProduct = async (id) => {
     try {
-      await axios.delete(`http://localhost:8090/api/products/${id}`);
+      await axios.delete(`https://cherry-backend-fcm4.onrender.com/api/products/${id}`);
       fetchProducts(); // Atualizar lista após exclusão
     } catch (error) {
       console.error("Erro ao excluir produto:", error);
