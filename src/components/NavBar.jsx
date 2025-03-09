@@ -53,9 +53,11 @@ const ResponsiveMenu = ({ isAuthenticated, setIsAuthenticated }) => {
             flexGrow: 1,
             fontWeight: 'bold',
             color: '#fff', // Título em branco
+            fontFamily: 'Yanone Kaffeesatz, sans-serif', // Aplicando a fonte
+            fontSize: '2rem', // Tamanho da fonte
           }}
         >
-          Cherry Blossom
+          CHERRY BLOSSOM
         </Typography>
 
         {isMobile ? (
@@ -77,6 +79,7 @@ const ResponsiveMenu = ({ isAuthenticated, setIsAuthenticated }) => {
                 style: {
                   backgroundColor: '#000', // Fundo do menu preto
                   color: '#fff', // Texto do menu em branco
+                  fontFamily: 'Yanone Kaffeesatz, sans-serif', // Aplicando a fonte
                 },
               }}
             >
@@ -86,6 +89,7 @@ const ResponsiveMenu = ({ isAuthenticated, setIsAuthenticated }) => {
                   onClick={handleMenuClose}
                   sx={{
                     color: '#fff',
+                    fontFamily: 'Yanone Kaffeesatz, sans-serif', // Aplicando a fonte
                     '&:hover': {
                       backgroundColor: '#333', // Hover cinza
                     },
@@ -104,6 +108,7 @@ const ResponsiveMenu = ({ isAuthenticated, setIsAuthenticated }) => {
                   onClick={handleLogout}
                   sx={{
                     color: '#fff',
+                    fontFamily: 'Yanone Kaffeesatz, sans-serif', // Aplicando a fonte
                     '&:hover': {
                       backgroundColor: '#333', // Hover cinza
                     },
@@ -117,6 +122,7 @@ const ResponsiveMenu = ({ isAuthenticated, setIsAuthenticated }) => {
                   to="/login"
                   sx={{
                     color: '#fff',
+                    fontFamily: 'Yanone Kaffeesatz, sans-serif', // Aplicando a fonte
                     '&:hover': {
                       backgroundColor: '#333', // Hover cinza
                     },
@@ -136,6 +142,7 @@ const ResponsiveMenu = ({ isAuthenticated, setIsAuthenticated }) => {
                 to={item.link}
                 sx={{
                   color: '#fff',
+                  fontFamily: 'Yanone Kaffeesatz, sans-serif', // Aplicando a fonte
                   '&:hover': {
                     backgroundColor: '#333', // Hover cinza para os botões
                   },
@@ -149,6 +156,7 @@ const ResponsiveMenu = ({ isAuthenticated, setIsAuthenticated }) => {
                 onClick={handleLogout}
                 sx={{
                   color: '#fff',
+                  fontFamily: 'Yanone Kaffeesatz, sans-serif', // Aplicando a fonte
                   '&:hover': {
                     backgroundColor: '#333', // Hover cinza para o botão de logout
                   },
@@ -162,6 +170,7 @@ const ResponsiveMenu = ({ isAuthenticated, setIsAuthenticated }) => {
                 to="/login"
                 sx={{
                   color: '#fff',
+                  fontFamily: 'Yanone Kaffeesatz, sans-serif', // Aplicando a fonte
                   '&:hover': {
                     backgroundColor: '#333', // Hover cinza para o botão de login
                   },
