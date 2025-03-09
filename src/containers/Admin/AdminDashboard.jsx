@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -196,7 +197,13 @@ const AdminDashboard = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [activeMenu, setActiveMenu] = useState("view");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
 
+
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+  
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -218,35 +225,36 @@ const AdminDashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const productData = {
-        name: currentProduct.name,
-        subtitle: currentProduct.subtitle,
-        price: currentProduct.price,
-        image: currentProduct.image, // Usa a URL da imagem
-      };
-
+      const formData = new FormData();
+      formData.append("name", currentProduct.name);
+      formData.append("subtitle", currentProduct.subtitle);
+      formData.append("price", currentProduct.price);
+      formData.append("image", selectedFile); // Adiciona o arquivo de imagem
+  
       if (currentProduct.id) {
+        // Editar produto existente
         await axios.put(
           `https://cherry-backend-fcm4.onrender.com/api/products/${currentProduct.id}`,
-          productData,
+          formData,
           {
             headers: {
-              "Content-Type": "application/json",
+              "Content-Type": "multipart/form-data", // Define o tipo de conteúdo como multipart/form-data
             },
           }
         );
       } else {
+        // Adicionar novo produto
         await axios.post(
           "https://cherry-backend-fcm4.onrender.com/api/products",
-          productData,
+          formData,
           {
             headers: {
-              "Content-Type": "application/json",
+              "Content-Type": "multipart/form-data", // Define o tipo de conteúdo como multipart/form-data
             },
           }
         );
       }
-
+  
       fetchProducts();
       setCurrentProduct({
         id: null,
@@ -255,6 +263,7 @@ const AdminDashboard = () => {
         image: "",
         price: 0,
       });
+      setSelectedFile(null); // Limpa o arquivo selecionado
       setIsEditing(false);
       setActiveMenu("view");
     } catch (error) {
@@ -316,7 +325,7 @@ const AdminDashboard = () => {
           <ProductList>
             {products.map((product) => (
               <ProductCard key={product.id}>
-                <ProductImage src={product.image} alt={product.name} />
+                <ProductImage src={`https://cherry-backend-fcm4.onrender.com${product.image}`} alt={product.name} />
                 <ProductDetails>
                   <ProductName>{product.name}</ProductName>
                   <ProductPrice>R$ {product.price}</ProductPrice>
@@ -351,14 +360,12 @@ const AdminDashboard = () => {
               onChange={handleInputChange}
               required
             />
-            <Input
-              type="text"
-              name="image"
-              placeholder="URL da Imagem"
-              value={currentProduct.image}
-              onChange={handleInputChange}
-              required
-            />
+              <Input
+    type="file"
+    name="image"
+    onChange={(e) => handleFileChange(e)}
+    required
+  />
             <Input
               type="number"
               name="price"

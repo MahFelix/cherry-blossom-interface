@@ -240,7 +240,7 @@ const App = () => {
                   {products.map((product) => (
                     <ProductCard key={product.id} className="reveal">
                       <ProductImage
-                        src={product.image}
+                        src={`https://cherry-backend-fcm4.onrender.com${product.image}`}
                         alt={product.name}
                         className="reveal"
                       />
